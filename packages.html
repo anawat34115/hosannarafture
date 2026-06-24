@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="กิจกรรมและแพ็กเกจท่องเที่ยว โฮซานนา ล่องแก่งพังงา — เลือกโปรแกรมล่องแก่ง 5 กม. หรือ 7 กม. ขี่รถ ATV ตะลุยธรรมชาติ หรือคอมโบสุดคุ้ม จองออนไลน์ทันที">
+    <title>กิจกรรม &amp; แพ็กเกจทัวร์ — Hosanna Rafture ล่องแก่งพังงา</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="designer.css">
+    <script src="designer.js" defer></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#F2B92A",          // Hosanna Yellow
+                        "primary-dark": "#D69E1C",    // Hover Yellow
+                        secondary: "#FFFFFF",        // White text for headings / UI
+                        "secondary-dark": "#E0E0E0",  // Gray text
+                        accent: "#F2B92A",           // Hosanna Yellow
+                        surface: "#1A1A1A",          // Card Surface Black (#1A1A1A)
+                        dark: "#0E0E0D",             // Deep Black Background (#0E0E0D)
+                        muted: "#B3B3B3",            // Secondary Text (#B3B3B3)
+                        success: "#4CAF50",          // Success Green
+                        error: "#EF5350",            // Error Red
+                    },
+                    fontFamily: {
+                        sans: ["Prompt", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { font-family: 'Prompt', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1A1A1A; }
+        ::-webkit-scrollbar-thumb { background: #F2B92A; border-radius: 4px; }
+
+        .nav-glass {
+            background: rgba(14, 14, 13, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Filter Tab Transitions */
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            background-color: #F2B92A;
+            color: #0E0E0D;
+            box-shadow: 0 10px 20px -8px rgba(242, 185, 42, 0.4);
+        }
+
+        /* Package Cards */
+        .prod-card {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .prod-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .zoom-img {
+            transition: transform 0.5s ease;
+        }
+        .prod-card:hover .zoom-img {
+            transform: scale(1.06);
+        }
+
+        /* Accordion transition classes */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease;
+        }
+        .faq-item.active .faq-content {
+            max-height: 500px;
+            padding-top: 1rem;
+            padding-bottom: 1.5rem;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+
+    <!-- FareHarbor LightFrame API Integration -->
+    <script type="text/javascript" src="https://fareharbor.com/embeds/api/v1/?autolightframe=yes"></script>
+</head>
+<body class="bg-dark text-muted antialiased">
+
+<!-- Navigation -->
+<nav class="nav-glass sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary rounded-md flex items-center justify-center text-secondary font-black text-xl shadow-md shadow-primary/30">
+                H
+            </div>
+            <div class="leading-tight">
+                <span class="text-secondary font-extrabold text-lg tracking-wider block">HOSANNA RAFTURE</span>
+                <span class="text-primary font-bold text-xs tracking-widest block uppercase">Phang Nga Adventure</span>
+            </div>
+        </a>
+
+        <!-- Links -->
+        <div class="hidden md:flex items-center gap-8">
+            <a href="index.html" class="text-secondary/80 hover:text-primary font-semibold text-sm transition-colors">หน้าแรก</a>
+            <a href="about.html" class="text-secondary/80 hover:text-primary font-semibold text-sm transition-colors">เกี่ยวกับเรา</a>
+            <a href="packages.html" class="text-primary font-bold text-sm border-b-2 border-primary pb-1">กิจกรรม &amp; แพ็กเกจ</a>
+            <a href="contact.html" class="text-secondary/80 hover:text-primary font-semibold text-sm transition-colors">ติดต่อเรา</a>
+            
+            <a href="#" onclick="openFHBooking('all')" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-sm px-6 py-3 rounded-md shadow-lg shadow-primary/25 transition-all transform hover:scale-105">
+                จองเลย / Book Now
+            </a>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button id="menu-btn" class="md:hidden text-secondary hover:text-primary p-2 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface/95 border-t border-white/5 pb-6 px-4 pt-2">
+        <div class="flex flex-col space-y-3">
+            <a href="index.html" class="text-secondary/80 hover:text-primary font-semibold text-base py-2">หน้าแรก</a>
+            <a href="about.html" class="text-secondary/80 hover:text-primary font-semibold text-base py-2">เกี่ยวกับเรา</a>
+            <a href="packages.html" class="text-primary font-bold text-base py-2">กิจกรรม &amp; แพ็กเกจ</a>
+            <a href="contact.html" class="text-secondary/80 hover:text-primary font-semibold text-base py-2">ติดต่อเรา</a>
+            <a href="#" onclick="openFHBooking('all')" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-center py-3 rounded-md shadow-md mt-2">
+                จองเลย / Book Now
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Header Banner -->
+<header class="relative bg-dark py-16 text-center text-white overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1528181304800-2f5353a98ef3?auto=format&fit=crop&q=80&w=1200')] bg-cover bg-center opacity-20"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4">
+        <h1 class="text-3xl sm:text-5xl font-extrabold mb-3">กิจกรรมและแพ็กเกจทัวร์</h1>
+        <p class="text-gray-300 text-sm sm:text-base font-light">ค้นหาทริปที่ชอบ กิจกรรมที่ใช่ ล่องแก่ง เอทีวี ซิปไลน์ หรือแพ็กเกจคอมโบจองง่ายจ่ายสะดวก</p>
+    </div>
+</header>
+
+<!-- Categories & Product Section -->
+<main class="py-16 bg-dark min-h-[60vh]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Category Filter Tabs -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+            <button class="tab-btn active px-6 py-2.5 rounded-md font-bold text-sm bg-surface text-secondary" onclick="filterCategory('all', this)">
+                ทั้งหมด
+            </button>
+            <button class="tab-btn px-6 py-2.5 rounded-md font-bold text-sm bg-surface text-secondary hover:bg-[#2A2A2A]" onclick="filterCategory('rafting', this)">
+                ล่องแก่ง (Rafting)
+            </button>
+            <button class="tab-btn px-6 py-2.5 rounded-md font-bold text-sm bg-surface text-secondary hover:bg-[#2A2A2A]" onclick="filterCategory('atv', this)">
+                รถเอทีวี (ATV)
+            </button>
+            <button class="tab-btn px-6 py-2.5 rounded-md font-bold text-sm bg-surface text-secondary hover:bg-[#2A2A2A]" onclick="filterCategory('zipline', this)">
+                ซิปไลน์ (Zipline)
+            </button>
+            <button class="tab-btn px-6 py-2.5 rounded-md font-bold text-sm bg-surface text-secondary hover:bg-[#2A2A2A]" onclick="filterCategory('elephant', this)">
+                กิจกรรมกับช้าง (Elephant)
+            </button>
+            <button class="tab-btn px-6 py-2.5 rounded-md font-bold text-sm bg-surface text-secondary hover:bg-[#2A2A2A]" onclick="filterCategory('combos', this)">
+                แพ็กเกจสุดคุ้ม (Combos)
+            </button>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
+            
+            <!-- Item 1: Rafting 5KM -->
+            <div class="prod-card bg-surface rounded-lg border border-[#2C2C2C] shadow-sm overflow-hidden flex flex-col justify-between" data-category="rafting">
+                <div class="relative overflow-hidden h-56">
+                    <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&q=80&w=600" alt="Rafting 5KM" class="zoom-img w-full h-full object-cover">
+                    <span class="absolute top-4 left-4 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-md shadow-sm">ล่องแก่ง</span>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-extrabold text-xl text-secondary mb-2">ล่องแก่งเรือยางธรรมชาติ (5 กิโลเมตร)</h3>
+                        <p class="text-muted text-sm mb-4">โปรแกรมบุกเบิกความมันส์ ท้าทายกระแสน้ำพังงาระยะทาง 5 กม. คอยควบคุมเรืออย่างชำนาญโดยไกด์ 2 คนต่อลำ</p>
+                        
+                        <!-- Details -->
+                        <ul class="space-y-2 mb-6 text-xs text-secondary/80">
+                            <li class="flex items-center gap-2">⏳ <span>ระยะเวลาล่องแก่ง: ~45-60 นาที</span></li>
+                            <li class="flex items-center gap-2">🦺 <span>รวมเสื้อชูชีพ หมวกนิรภัยมาตรฐานสากล</span></li>
+                            <li class="flex items-center gap-2">🩹 <span>รวมประกันอุบัติเหตุนักท่องเที่ยวตามกฎหมาย</span></li>
+                            <li class="flex items-start gap-2">⚠️ <span>จำกัดอายุ 4-65 ปี / สภาพร่างกายปกติ</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline justify-between border-t border-gray-100 pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาสุทธิ</span>
+                            <div>
+                                <span class="text-gray-400 line-through text-xs">฿1,200</span>
+                                <span class="text-primary font-black text-2xl ml-1">฿890</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="safety.html#faqs" class="border border-gray-200 text-center py-2.5 rounded-md text-xs font-bold text-secondary hover:border-primary transition-colors">เตรียมตัวก่อนทริป</a>
+                            <!-- FareHarbor LightFrame Button -->
+                            <a href="https://fareharbor.com/embeds/book/placeholder/items/12345/?full-items=yes" onclick="openFHBooking('12345', event)" class="bg-primary hover:bg-primary-dark text-secondary font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">จองเลย / Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2: Rafting 7KM -->
+            <div class="prod-card bg-surface rounded-lg border border-[#2C2C2C] shadow-sm overflow-hidden flex flex-col justify-between" data-category="rafting">
+                <div class="relative overflow-hidden h-56">
+                    <img src="https://images.unsplash.com/photo-1528181304800-2f5353a98ef3?auto=format&fit=crop&q=80&w=600" alt="Rafting 7KM" class="zoom-img w-full h-full object-cover">
+                    <span class="absolute top-4 left-4 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-md shadow-sm">ล่องแก่ง</span>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-extrabold text-xl text-secondary mb-2">ล่องแก่งสายเอ็กซ์ตรีม (7 กิโลเมตร)</h3>
+                        <p class="text-muted text-sm mb-4">สะใจยิ่งกว่าเดิม เพิ่มระยะทางอีก 2 กิโลเมตร ผ่านจุดแก่งหินสลับซับซ้อนที่ยากขึ้น เหมาะสำหรับสายลุยที่ต้องการท้าทายขีดจำกัด</p>
+                        
+                        <ul class="space-y-2 mb-6 text-xs text-secondary/80">
+                            <li class="flex items-center gap-2">⏳ <span>ระยะเวลาล่องแก่ง: ~70-90 นาที</span></li>
+                            <li class="flex items-center gap-2">🦺 <span>รวมไกด์นำล่องและอุปกรณ์ความปลอดภัยครบชุด</span></li>
+                            <li class="flex items-center gap-2">🥪 <span>รวมของว่าง ผลไม้ และเครื่องดื่ม</span></li>
+                            <li class="flex items-start gap-2">⚠️ <span>จำกัดอายุ 7-60 ปี / ว่ายน้ำพอเป็น</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline justify-between border-t border-[#2C2C2C] pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาสุทธิ</span>
+                            <div>
+                                <span class="text-gray-400 line-through text-xs">฿1,500</span>
+                                <span class="text-primary font-black text-2xl ml-1">฿1,090</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="safety.html#faqs" class="border border-[#2C2C2C] text-center py-2.5 rounded-md text-xs font-bold text-secondary hover:border-primary transition-colors">เตรียมตัวก่อนทริป</a>
+                            <a href="https://fareharbor.com/embeds/book/placeholder/items/12346/?full-items=yes" onclick="openFHBooking('12346', event)" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">จองเลย / Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3: ATV 30 Mins -->
+            <div class="prod-card bg-surface rounded-lg border border-[#2C2C2C] shadow-sm overflow-hidden flex flex-col justify-between" data-category="atv">
+                <div class="relative overflow-hidden h-56">
+                    <img src="https://images.unsplash.com/photo-1551698618-1ffdfe079822?auto=format&fit=crop&q=80&w=600" alt="ATV 30 min" class="zoom-img w-full h-full object-cover">
+                    <span class="absolute top-4 left-4 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-md shadow-sm">เอทีวี</span>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-extrabold text-xl text-secondary mb-2">ขับรถ ATV ตะลุยป่าฝน (30 นาที)</h3>
+                        <p class="text-muted text-sm mb-4">สนุกไปกับการขับรถ ATV เครื่องยนต์แรง บุกเบิกเส้นทางดินโคลน หินธรรมชาติ และอุโมงค์ต้นไม้ในสองแพรกอย่างสนุกสนาน</p>
+                        
+                        <ul class="space-y-2 mb-6 text-xs text-secondary/80">
+                            <li class="flex items-center gap-2">⏱️ <span>เวลาขี่: 30 นาที (รวมสอนใช้งานเบื้องต้น)</span></li>
+                            <li class="flex items-center gap-2">🛞 <span>รถ ATV ขนาดเครื่องยนต์ 150-200cc แข็งแรง</span></li>
+                            <li class="flex items-center gap-2">🪖 <span>รวมหมวกกันน็อก และไกด์ขับนำขบวน</span></li>
+                            <li class="flex items-start gap-2">⚠️ <span>ผู้ขับขี่อายุ 12 ปีขึ้นไป / ผู้ซ้อนอายุ 4 ปีขึ้นไป</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline justify-between border-t border-[#2C2C2C] pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาสุทธิ</span>
+                            <div>
+                                <span class="text-gray-400 line-through text-xs">฿1,000</span>
+                                <span class="text-primary font-black text-2xl ml-1">฿790</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="safety.html#faqs" class="border border-[#2C2C2C] text-center py-2.5 rounded-md text-xs font-bold text-secondary hover:border-primary transition-colors">เตรียมตัวก่อนทริป</a>
+                            <a href="https://fareharbor.com/embeds/book/placeholder/items/12347/?full-items=yes" onclick="openFHBooking('12347', event)" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">จองเลย / Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4: ATV 1 Hour -->
+            <div class="prod-card bg-surface rounded-lg border border-[#2C2C2C] shadow-sm overflow-hidden flex flex-col justify-between" data-category="atv">
+                <div class="relative overflow-hidden h-56">
+                    <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&q=80&w=600" alt="ATV 1 Hour" class="zoom-img w-full h-full object-cover">
+                    <span class="absolute top-4 left-4 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-md shadow-sm">เอทีวี</span>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-extrabold text-xl text-secondary mb-2">ขับรถ ATV ตะลุยธรรมชาติ (1 ชั่วโมง)</h3>
+                        <p class="text-muted text-sm mb-4">เส้นทางระยะไกลขึ้น พาไต่เนินชัน ข้ามธารน้ำตื้น และลุยป่าสวนผลไม้ลึกขึ้นอย่างท้าทาย สนุกเร้าใจเป็นทวีคูณสำหรับนักขับตัวจริง</p>
+                        
+                        <ul class="space-y-2 mb-6 text-xs text-secondary/80">
+                            <li class="flex items-center gap-2">⏱️ <span>เวลาขี่: 1 ชั่วโมงเต็ม (จุใจสะใจ)</span></li>
+                            <li class="flex items-center gap-2">🛞 <span>มีระบบชี้แนะและทีมช่างช่วยเหลือตามขบวน</span></li>
+                            <li class="flex items-center gap-2">🍹 <span>รวมเครื่องดื่มเย็นๆ บริการจุดพักครึ่งทาง</span></li>
+                            <li class="flex items-start gap-2">⚠️ <span>มีผู้สอนคอยคุม หากขี่ไม่คล่องมีไกด์ขี่ให้ซ้อน</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline justify-between border-t border-[#2C2C2C] pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาสุทธิ</span>
+                            <div>
+                                <span class="text-gray-400 line-through text-xs">฿1,600</span>
+                                <span class="text-primary font-black text-2xl ml-1">฿1,190</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="safety.html#faqs" class="border border-[#2C2C2C] text-center py-2.5 rounded-md text-xs font-bold text-secondary hover:border-primary transition-colors">เตรียมตัวก่อนทริป</a>
+                            <a href="https://fareharbor.com/embeds/book/placeholder/items/12348/?full-items=yes" onclick="openFHBooking('12348', event)" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">จองเลย / Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 5: Zipline 5 Stations -->
+            <div class="prod-card bg-surface rounded-lg border border-[#2C2C2C] shadow-sm overflow-hidden flex flex-col justify-between" data-category="zipline">
+                <div class="relative overflow-hidden h-56">
+                    <img src="https://images.unsplash.com/photo-1563841930-5664d3671f4c?auto=format&fit=crop&q=80&w=600" alt="Zipline" class="zoom-img w-full h-full object-cover">
+                    <span class="absolute top-4 left-4 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-md shadow-sm">ซิปไลน์</span>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-extrabold text-xl text-secondary mb-2">โหนสลิงซิปไลน์ผจญภัย (5 สถานี)</h3>
+                        <p class="text-muted text-sm mb-4">โหนสลิงลอยฟ้าข้ามผ่านหุบเขาและธารน้ำตก ชมวิวมุมสูงแบบนกเกาะยอดไม้ ปลอดภัยสูงสุดด้วยระบบรอกสลิงคู่ (Double Cable System)</p>
+                        
+                        <ul class="space-y-2 mb-6 text-xs text-secondary/80">
+                            <li class="flex items-center gap-2">🌲 <span>รวม 5 สถานีท้าทาย รวมจุดยาวสุด 120 เมตร</span></li>
+                            <li class="flex items-center gap-2">🪂 <span>อุปกรณ์สายรัดนิรภัย รอกสลิงมาตรฐานสากล</span></li>
+                            <li class="flex items-center gap-2">🩺 <span>สตาฟคอยล็อกเชือกและเซฟให้ทุกจุดสถานี</span></li>
+                            <li class="flex items-start gap-2">⚠️ <span>จำกัดน้ำหนักไม่เกิน 110 กก. และความสูง 100 ซม. ขึ้นไป</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline justify-between border-t border-[#2C2C2C] pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาสุทธิ</span>
+                            <div>
+                                <span class="text-gray-400 line-through text-xs">฿900</span>
+                                <span class="text-primary font-black text-2xl ml-1">฿690</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="safety.html#faqs" class="border border-[#2C2C2C] text-center py-2.5 rounded-md text-xs font-bold text-secondary hover:border-primary transition-colors">เตรียมตัวก่อนทริป</a>
+                            <a href="https://fareharbor.com/embeds/book/placeholder/items/12349/?full-items=yes" onclick="openFHBooking('12349', event)" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">จองเลย / Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 6: Combo A -->
+            <div class="prod-card bg-surface rounded-lg border border-[#2C2C2C] shadow-sm overflow-hidden flex flex-col justify-between ring-2 ring-primary" data-category="combos">
+                <div class="relative overflow-hidden h-56">
+                    <img src="https://images.unsplash.com/photo-1551698618-1ffdfe079822?auto=format&fit=crop&q=80&w=600" alt="Combo A" class="zoom-img w-full h-full object-cover">
+                    <span class="absolute top-4 left-4 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-md shadow-sm">ยอดฮิต</span>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-extrabold text-xl text-secondary mb-2">Combo A: ล่องแก่ง 5 กม. + ATV 30 นาที</h3>
+                        <p class="text-muted text-sm mb-4">แพ็กเกจยอดฮิตสูงสุดตลอดกาล ผสมผสานสองรสชาติความสนุก ทั้งลุยน้ำด้วยเรือยาง และลุยฝุ่นด้วยรถเอทีวี พร้อมบริการสุดฟิน</p>
+                        
+                        <ul class="space-y-2 mb-6 text-xs text-secondary/80">
+                            <li class="flex items-center gap-2">⏱️ <span>ระยะเวลารวม: ~3 ชั่วโมงครึ่ง</span></li>
+                            <li class="flex items-center gap-2">🍽️ <span>ฟรี บุฟเฟต์อาหารกลางวันสไตล์ท้องถิ่นไทย</span></li>
+                            <li class="flex items-center gap-2">🚿 <span>มีห้องอาบน้ำ ล็อกเกอร์ และที่จอดรถส่วนตัว</span></li>
+                            <li class="flex items-start gap-2">⚠️ <span>จองขั้นต่ำ 2 ท่านขึ้นไป</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline justify-between border-t border-[#2C2C2C] pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาสุทธิ</span>
+                            <div>
+                                <span class="text-gray-400 line-through text-xs">฿2,200</span>
+                                <span class="text-primary font-black text-2xl ml-1">฿1,490</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="safety.html#faqs" class="border border-[#2C2C2C] text-center py-2.5 rounded-md text-xs font-bold text-secondary hover:border-primary transition-colors">เตรียมตัวก่อนทริป</a>
+                            <a href="https://fareharbor.com/embeds/book/placeholder/items/12350/?full-items=yes" onclick="openFHBooking('12350', event)" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">จองเลย / Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 7: Combo B -->
+            <div class="prod-card bg-surface rounded-lg border border-[#2C2C2C] shadow-sm overflow-hidden flex flex-col justify-between" data-category="combos">
+                <div class="relative overflow-hidden h-56">
+                    <img src="https://images.unsplash.com/photo-1563841930-5664d3671f4c?auto=format&fit=crop&q=80&w=600" alt="Combo B" class="zoom-img w-full h-full object-cover">
+                    <span class="absolute top-4 left-4 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-md shadow-sm">แพ็กเกจคอมโบ</span>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-extrabold text-xl text-secondary mb-2">Combo B: ล่องแก่ง 5 กม. + ซิปไลน์ 5 สถานี</h3>
+                        <p class="text-muted text-sm mb-4">ผจญภัยทัวร์สองมิติ สัมผัสคลื่นสาดล่องเรือแก่งสุดเย็นฉ่ำ และเหินขึ้นที่สูงบนสลิงซิปไลน์ ชมป่าสีเขียวพังงาแบบ 360 องศา</p>
+                        
+                        <ul class="space-y-2 mb-6 text-xs text-secondary/80">
+                            <li class="flex items-center gap-2">⏱️ <span>ระยะเวลารวม: ~3 ชั่วโมง</span></li>
+                            <li class="flex items-center gap-2">🍽️ <span>รวมอาหารกลางวัน เครื่องดื่มเย็น ผ้าเช็ดตัว</span></li>
+                            <li class="flex items-center gap-2">🩹 <span>มีประกันภัยทริป ท่องเที่ยวปลอดภัยอุ่นใจ</span></li>
+                            <li class="flex items-start gap-2">⚠️ <span>มีช่างภาพถ่ายรูปสแนปช็อตให้เลือกซื้อเป็นที่ระลึก</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline justify-between border-t border-[#2C2C2C] pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาสุทธิ</span>
+                            <div>
+                                <span class="text-gray-400 line-through text-xs">฿1,800</span>
+                                <span class="text-primary font-black text-2xl ml-1">฿1,290</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="safety.html#faqs" class="border border-[#2C2C2C] text-center py-2.5 rounded-md text-xs font-bold text-secondary hover:border-primary transition-colors">เตรียมตัวก่อนทริป</a>
+                            <a href="https://fareharbor.com/embeds/book/placeholder/items/12351/?full-items=yes" onclick="openFHBooking('12351', event)" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">จองเลย / Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 8: Ultimate Adventure -->
+            <div class="prod-card bg-surface rounded-lg border border-[#2C2C2C] shadow-sm overflow-hidden flex flex-col justify-between" data-category="combos">
+                <div class="relative overflow-hidden h-56">
+                    <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&q=80&w=600" alt="Ultimate Combo" class="zoom-img w-full h-full object-cover">
+                    <span class="absolute top-4 left-4 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-md shadow-sm">ลุยสุดขั้ว</span>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-extrabold text-xl text-secondary mb-2">Ultimate 3-in-1: ล่องแก่ง 7 กม. + ATV 1 ชม. + ซิปไลน์</h3>
+                        <p class="text-muted text-sm mb-4">แพ็กเกจสำหรับคอแอดเวนเจอร์ตัวจริง ล่องแก่งสะใจ 7 กม. ต่อด้วยขี่เอทีวีจุใจ 1 ชม. และเหินบินเวหาโหนซิปไลน์ 5 สถานี</p>
+                        
+                        <ul class="space-y-2 mb-6 text-xs text-secondary/80">
+                            <li class="flex items-center gap-2">⏱️ <span>ระยะเวลารวม: ~5-6 ชั่วโมง (เต็มวัน)</span></li>
+                            <li class="flex items-center gap-2">🍽️ <span>รวมอาหารกลางวันพรีเมียมบุฟเฟต์ เครื่องดื่ม ผลไม้</span></li>
+                            <li class="flex items-center gap-2">🚐 <span>ฟรี บริการรถตู้รับส่งจากโรงแรม (กรณีกดซื้อเสริมในระบบ)</span></li>
+                            <li class="flex items-start gap-2">⚠️ <span>เหมาะสำหรับช่วงอายุ 10-55 ปี ที่ร่างกายฟิตพร้อม</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline justify-between border-t border-[#2C2C2C] pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาสุทธิ</span>
+                            <div>
+                                <span class="text-gray-400 line-through text-xs">฿3,500</span>
+                                <span class="text-primary font-black text-2xl ml-1">฿2,490</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="safety.html#faqs" class="border border-[#2C2C2C] text-center py-2.5 rounded-md text-xs font-bold text-secondary hover:border-primary transition-colors">เตรียมตัวก่อนทริป</a>
+                            <a href="https://fareharbor.com/embeds/book/placeholder/items/12352/?full-items=yes" onclick="openFHBooking('12352', event)" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">จองเลย / Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 9: Rafting 9-11KM -->
+            <div class="prod-card bg-surface rounded-lg border border-[#2C2C2C] shadow-sm overflow-hidden flex flex-col justify-between" data-category="rafting">
+                <div class="relative overflow-hidden h-56">
+                    <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&q=80&w=600" alt="Rafting 9-11KM" class="zoom-img w-full h-full object-cover">
+                    <span class="absolute top-4 left-4 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-md shadow-sm">ล่องแก่งเอ็กซ์ตรีม</span>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-extrabold text-xl text-secondary mb-2">ล่องแก่งความท้าทายขั้นสุด (9-11 กิโลเมตร)</h3>
+                        <p class="text-muted text-sm mb-4">เส้นทางยาวที่สุดผ่านน้ำหลากกระแสน้ำเชี่ยวระดับ 3-5 ไหลผ่านเขตรักษาพันธุ์สัตว์ป่าและน้ำตกโตนปริวรรต ท้าทายความตื่นเต้นขั้นสุด</p>
+                        
+                        <ul class="space-y-2 mb-6 text-xs text-secondary/80">
+                            <li class="flex items-center gap-2">⏳ <span>ระยะเวลาล่องแก่ง: ~120-150 นาที</span></li>
+                            <li class="flex items-center gap-2">🦺 <span>นายท้ายผู้เชี่ยวชาญ 2 ท่านคอยดูแลความปลอดภัยสูงสุด</span></li>
+                            <li class="flex items-center gap-2">🥪 <span>รวมอาหารกลางวัน เครื่องดื่ม ผลไม้ และประกันภัย</span></li>
+                            <li class="flex items-start gap-2">⚠️ <span>จำกัดอายุ 15-55 ปี ร่างกายฟิตสมบูรณ์และว่ายน้ำเป็น</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline justify-between border-t border-[#2C2C2C] pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาสุทธิ</span>
+                            <div>
+                                <span class="text-gray-400 line-through text-xs">฿2,500</span>
+                                <span class="text-primary font-black text-2xl ml-1">฿1,890</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="safety.html#faqs" class="border border-[#2C2C2C] text-center py-2.5 rounded-md text-xs font-bold text-secondary hover:border-primary transition-colors">เตรียมตัวก่อนทริป</a>
+                            <a href="https://fareharbor.com/embeds/book/placeholder/items/12353/?full-items=yes" onclick="openFHBooking('12353', event)" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">จองเลย / Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 10: Elephant Activities -->
+            <div class="prod-card bg-surface rounded-lg border border-[#2C2C2C] shadow-sm overflow-hidden flex flex-col justify-between" data-category="elephant">
+                <div class="relative overflow-hidden h-56">
+                    <img src="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&fit=crop&q=80&w=600" alt="Elephant Bathing" class="zoom-img w-full h-full object-cover">
+                    <span class="absolute top-4 left-4 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-md shadow-sm">กิจกรรมกับช้าง</span>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-extrabold text-xl text-secondary mb-2">กิจกรรมอาบน้ำช้างเชิงอนุรักษ์ (Elephant Bathing)</h3>
+                        <p class="text-muted text-sm mb-4">สัมผัสประสบการณ์ใกล้ชิดกับช้างในธรรมชาติ ป้อนกล้วยอ้อย ทำสปาโคลนบำรุงผิวให้ช้าง และอาบน้ำร่วมกับช้างในลำธารใสสองแพรก</p>
+                        
+                        <ul class="space-y-2 mb-6 text-xs text-secondary/80">
+                            <li class="flex items-center gap-2">⏱️ <span>ระยะเวลากิจกรรม: ~1.5 - 2 ชั่วโมง</span></li>
+                            <li class="flex items-center gap-2">🍌 <span>รวมอาหารช้าง กล้วย อ้อย สำหรับป้อนช้าง</span></li>
+                            <li class="flex items-center gap-2">📷 <span>รวมช่างภาพคอยเก็บรูปสแนปช็อตความประทับใจ</span></li>
+                            <li class="flex items-start gap-2">⚠️ <span>เหมาะสำหรับครอบครัว เด็กเล็ก และทุกเพศทุกวัย</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline justify-between border-t border-[#2C2C2C] pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาสุทธิ</span>
+                            <div>
+                                <span class="text-gray-400 line-through text-xs">฿1,200</span>
+                                <span class="text-primary font-black text-2xl ml-1">฿890</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="safety.html#faqs" class="border border-[#2C2C2C] text-center py-2.5 rounded-md text-xs font-bold text-secondary hover:border-primary transition-colors">เตรียมตัวก่อนทริป</a>
+                            <a href="https://fareharbor.com/embeds/book/placeholder/items/12354/?full-items=yes" onclick="openFHBooking('12354', event)" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">จองเลย / Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 11: Combo C -->
+            <div class="prod-card bg-surface rounded-lg border border-[#2C2C2C] shadow-sm overflow-hidden flex flex-col justify-between" data-category="combos">
+                <div class="relative overflow-hidden h-56">
+                    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=800" alt="Combo C" class="zoom-img w-full h-full object-cover">
+                    <span class="absolute top-4 left-4 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-md shadow-sm">สุดยอดคอมโบ</span>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-extrabold text-xl text-secondary mb-2">Combo C: ล่องแก่ง 5 กม. + อาบน้ำช้าง</h3>
+                        <p class="text-muted text-sm mb-4">แพ็กเกจรวมกิจกรรมผจญภัยและกิจกรรมเชิงอนุรักษ์ยอดฮิตไว้ในวันเดียว ล่องแก่งเรือยาง 5 กม. และป้อนอาหารอาบน้ำช้าง</p>
+                        
+                        <ul class="space-y-2 mb-6 text-xs text-secondary/80">
+                            <li class="flex items-center gap-2">⏱️ <span>ระยะเวลารวม: ~4 ชั่วโมง</span></li>
+                            <li class="flex items-center gap-2">🍽️ <span>ฟรี บุฟเฟต์อาหารกลางวันท้องถิ่นไทย ผลไม้ เครื่องดื่ม</span></li>
+                            <li class="flex items-center gap-2">🛡️ <span>รวมอุปกรณ์เซฟตี้ ประกันภัยการเดินทาง และล็อกเกอร์</span></li>
+                            <li class="flex items-start gap-2">⚠️ <span>จองขั้นต่ำ 2 ท่านขึ้นไป</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline justify-between border-t border-[#2C2C2C] pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาสุทธิ</span>
+                            <div>
+                                <span class="text-gray-400 line-through text-xs">฿1,900</span>
+                                <span class="text-primary font-black text-2xl ml-1">฿1,390</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="safety.html#faqs" class="border border-[#2C2C2C] text-center py-2.5 rounded-md text-xs font-bold text-secondary hover:border-primary transition-colors">เตรียมตัวก่อนทริป</a>
+                            <a href="https://fareharbor.com/embeds/book/placeholder/items/12355/?full-items=yes" onclick="openFHBooking('12355', event)" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">จองเลย / Book</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ══════════════════════════════════════
+             TOUR PREPARATION CHECKLIST SECTION
+             ══════════════════════════════════════ -->
+        <div id="prep-checklist" class="mt-24 p-8 sm:p-12 bg-surface rounded-lg border border-[#2C2C2C] max-w-4xl mx-auto prep-card-check reveal-element">
+            <span class="text-primary font-bold text-xs tracking-widest uppercase block mb-2">PREPARATION GUIDE</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-secondary mb-8">ข้อแนะนำและการเตรียมตัวเดินทางมาทริป</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                <!-- Col 1: สิ่งที่ต้องเตรียมมา -->
+                <div class="space-y-4">
+                    <h3 class="font-bold text-lg text-primary flex items-center gap-2">🎒 สิ่งที่แนะนำให้พกติดตัวมา:</h3>
+                    <ul class="space-y-2 text-secondary/80">
+                        <li class="flex items-start gap-2">👕 <span><strong>ชุดเปลี่ยนหลังเปียกน้ำ 1 ชุด</strong> (เรามีห้องสุขาและห้องอาบน้ำบริการฟรี)</span></li>
+                        <li class="flex items-start gap-2">👣 <span><strong>รองเท้าแตะรัดส้นหรือรองเท้าลุยน้ำ</strong> (ที่รองรับน้ำหนักและพื้นผิวลื่น)</span></li>
+                        <li class="flex items-start gap-2">🧴 <span><strong>ครีมกันแดดแบบเป็นมิตรกับธรรมชาติ</strong> (แนะนำ Reef Safe)</span></li>
+                        <li class="flex items-start gap-2">💵 <span><strong>เงินสดจำนวนเล็กน้อย</strong> (สำหรับซื้อรูปถ่ายหรือค่าทิปไกด์นำทริป)</span></li>
+                    </ul>
+                </div>
+                <!-- Col 2: ข้อห้ามและการระวัง -->
+                <div class="space-y-4">
+                    <h3 class="font-bold text-lg text-error flex items-center gap-2">⚠️ สิ่งที่ห้ามพกพาหรือระมัดระวัง:</h3>
+                    <ul class="space-y-2 text-secondary/80">
+                        <li class="flex items-start gap-2">❌ <span><strong>เครื่องประดับและนาฬิกาที่มีมูลค่าสูง</strong> (เสี่ยงต่อการหลุดร่วงในแม่น้ำ)</span></li>
+                        <li class="flex items-start gap-2">📱 <span><strong>โทรศัพท์มือถือที่ไม่มีซองกันน้ำ</strong> (ควรพกซองกันน้ำแบบคล้องคอ)</span></li>
+                        <li class="flex items-start gap-2">👖 <span><strong>กางเกงยีนส์หนา</strong> (เพราะอมน้ำและจะทำให้น้ำหนักตัวเพิ่มขึ้นเมื่อเปียก)</span></li>
+                        <li class="flex items-start gap-2">🩺 <span><strong>ผู้มีประวัติโรคหัวใจหรือกำลังตั้งครรภ์</strong> (ไม่แนะนำให้ลงล่องแก่งเด็ดขาด)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             CORPORATE GROUP OUTINGS BANNER SECTION
+             ══════════════════════════════════════ -->
+        <div id="corporate-outings" class="mt-16 p-8 sm:p-12 bg-gradient-to-r from-dark to-surface rounded-lg border border-[#2C2C2C] max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 corporate-outings-banner reveal-element">
+            <div class="space-y-3 max-w-xl">
+                <span class="bg-primary/20 text-primary border border-primary/30 text-[10px] font-extrabold px-3 py-1 rounded-md uppercase tracking-wider inline-block">Group Outings</span>
+                <h3 class="text-xl sm:text-2xl font-extrabold text-secondary">ต้องการจัดทริปบริษัท สัมมนา หรืองานเลี้ยงกรุ๊ปใหญ่?</h3>
+                <p class="text-muted text-xs leading-relaxed">
+                    โฮซานนา ล่องแก่งพังงา รองรับกรุ๊ปคณะทัวร์ได้ถึง 150+ ท่านต่อวัน พร้อมแพ็กเกจพิเศษที่รวมบริการบุฟเฟต์อาหารกลางวันพรีเมียม รถรับส่งตู้/บัสเหมาลำ และกิจกรรมบิวดิ้งทีมเวิร์กสุดมันส์ในงบประมาณที่คุ้มค่าที่สุด
+                </p>
+            </div>
+            <a href="contact.html?type=group" class="bg-primary hover:bg-primary-dark text-dark font-black text-xs px-6 py-4 rounded-md shadow-lg shadow-primary/25 transition-all transform hover:scale-105 whitespace-nowrap text-center">
+                ขอใบเสนอราคาด่วน 📊
+            </a>
+        </div>
+
+        <!-- ══════════════════════════════════════
+             FAQS SECTION
+             ══════════════════════════════════════ -->
+        <section id="faqs" class="py-24 border-t border-[#2C2C2C] mt-24 reveal-element">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-primary font-bold text-xs tracking-widest uppercase block mb-2">Frequently Asked Questions</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-secondary">คำถามที่พบบ่อย (FAQs)</h2>
+                    <p class="text-muted mt-3 text-xs sm:text-sm">ไขทุกข้อข้องใจสำหรับการเดินทางท่องเที่ยวล่องแก่งพังงาและการผจญภัยกับเรา</p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item bg-surface rounded-lg border border-[#2C2C2C] shadow-sm p-6 cursor-pointer" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center gap-4">
+                            <h3 class="font-extrabold text-base text-secondary">1. ควรแต่งกายและเตรียมตัวอย่างไรในการล่องแก่ง?</h3>
+                            <span class="faq-icon text-primary font-bold text-base">▼</span>
+                        </div>
+                        <div class="faq-content text-muted text-xs leading-relaxed border-t border-[#2C2C2C] mt-4 space-y-2">
+                            <p>ควรสวมใส่เสื้อผ้าที่มีน้ำหนักเบา แห้งไว (เช่น เสื้อยืดกีฬา, กางเกงขาสั้นผ้าแห้งง่าย) และสวมรองเท้าแตะรัดส้น หรือรองเท้าลุยน้ำที่มีการยึดเกาะพื้นผิวหินได้ดี</p>
+                            <p class="text-primary font-semibold">❌ สิ่งที่ไม่ควรใส่/พกพา:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>เลี่ยงกางเกงยีนส์ เพราะเมื่อเปียกน้ำจะมีน้ำหนักมากและเป็นอุปสรรคการขยับตัว</li>
+                                <li>ไม่ควรสวมเครื่องประดับมีค่า หรือนาฬิกาที่ไม่กันน้ำ เพราะอาจหลุดหายระหว่างเรือคว่ำ</li>
+                                <li>ควรพกชุดแห้งสำหรับเปลี่ยนหลังทำกิจกรรม 1 ชุด ทางเรามีห้องอาบน้ำพร้อมล็อกเกอร์บริการฟรี</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- FAQ 2 -->
+                    <div class="faq-item bg-surface rounded-lg border border-[#2C2C2C] shadow-sm p-6 cursor-pointer" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center gap-4">
+                            <h3 class="font-extrabold text-base text-secondary">2. หากมีฝนตก กิจกรรมล่องแก่งจะถูกยกเลิกหรือไม่?</h3>
+                            <span class="faq-icon text-primary font-bold text-base">▼</span>
+                        </div>
+                        <div class="faq-content text-muted text-xs leading-relaxed border-t border-[#2C2C2C] mt-4 space-y-2">
+                            <p>โดยปกติ <strong>ฝนตกทั่วไปไม่มีผลกับการล่องแก่ง</strong> และยังสามารถทำกิจกรรมได้ตามปกติ (ได้ความสนุกชุ่มฉ่ำยิ่งขึ้นด้วยซ้ำ)</p>
+                            <p>อย่างไรก็ตาม หากเกิดฝนตกหนักรุนแรงต่อเนื่องจนระดับน้ำในลำธารสองแพรกสูงเกินขีดจำกัดความปลอดภัยของกรมป่าไม้และอุทยานแห่งชาติ ทางโฮซานนาจะทำการประเมินความปลอดภัยร่วมกับหน่วยกู้ภัย หากจำเป็นต้องยกเลิก:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>เราจะโทรติดต่อท่านเพื่อทำการเลื่อนวันเดินทาง</li>
+                                <li>หากท่านไม่สะดวกเลื่อนวัน เรายินดีคืนเงินมัดจำ/ค่าบริการให้ท่านเต็มจำนวน 100%</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- FAQ 3 -->
+                    <div class="faq-item bg-surface rounded-lg border border-[#2C2C2C] shadow-sm p-6 cursor-pointer" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center gap-4">
+                            <h3 class="font-extrabold text-base text-secondary">3. มีโรคประจำตัวสามารถเข้าร่วมกิจกรรมได้หรือไม่?</h3>
+                            <span class="faq-icon text-primary font-bold text-base">▼</span>
+                        </div>
+                        <div class="faq-content text-muted text-xs leading-relaxed border-t border-[#2C2C2C] mt-4 space-y-2">
+                            <p>เพื่อความปลอดภัยสูงสุดของนักท่องเที่ยว ข้อจำกัดทางร่างกายที่ไม่สามารถทำกิจกรรมล่องแก่ง, ATV และซิปไลน์ มีดังนี้:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li class="text-error font-semibold">สตรีมีครรภ์ (ไม่สามารถร่วมกิจกรรมได้เด็ดขาด)</li>
+                                <li>ผู้มีโรคหัวใจ โรคความดันโลหิตสูงรุนแรง หรือโรคระบบทางเดินหายใจขั้นรุนแรง</li>
+                                <li>ผู้ที่มีประวัติผ่าตัดกระดูกสันหลัง หรือกระดูกคออักเสบรุนแรง</li>
+                                <li>ผู้ที่มีความบกพร่องทางสติปัญญาและการเคลื่อนไหวระดับรุนแรง</li>
+                            </ul>
+                            <p class="text-[10px]">หากท่านมีโรคประจำตัวแต่ไม่รุนแรง (เช่น หอบหืดที่มียาพกประจำตัว) โปรดแจ้งให้ทีมงานจองตั๋วและสตาฟกัปตันเรือทราบล่วงหน้าก่อนลงเรือทุกครั้ง</p>
+                        </div>
+                    </div>
+                    <!-- FAQ 4 -->
+                    <div class="faq-item bg-surface rounded-lg border border-[#2C2C2C] shadow-sm p-6 cursor-pointer" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center gap-4">
+                            <h3 class="font-extrabold text-base text-secondary">4. มีการจำกัดอายุและน้ำหนักสำหรับเครื่องเล่นหรือไม่?</h3>
+                            <span class="faq-icon text-primary font-bold text-base">▼</span>
+                        </div>
+                        <div class="faq-content text-muted text-xs leading-relaxed border-t border-[#2C2C2C] mt-4">
+                            <ul class="space-y-2">
+                                <li>👦 <strong>กิจกรรมล่องแก่ง</strong>: จำกัดอายุ 4 ปีบริบูรณ์ขึ้นไป และไม่เกิน 65 ปี เด็กต้องมีผู้ปกครองหรือสตาฟคุมดูแลในเรืออย่างใกล้ชิด</li>
+                                <li>🏍️ <strong>กิจกรรมขับรถ ATV</strong>: ผู้ขับขี่ต้องมีอายุ 12 ปีขึ้นไป และมีกำลังกายสามารถควบคุมแฮนด์รถได้ดี เด็กอายุ 4 ปีขึ้นไปสามารถนั่งซ้อนท้ายผู้ใหญ่ได้</li>
+                                <li>🌲 <strong>กิจกรรมซิปไลน์ (Zipline)</strong>: จำกัดน้ำหนักตัวไม่เกิน 110 กิโลกรัม และส่วนสูงไม่น้อยกว่า 100 ซม. เพื่อความปลอดภัยของรอกสลิงนิรภัย</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- FAQ 5 -->
+                    <div class="faq-item bg-surface rounded-lg border border-[#2C2C2C] shadow-sm p-6 cursor-pointer" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center gap-4">
+                            <h3 class="font-extrabold text-base text-secondary">5. มีที่จอดรถ ล็อกเกอร์ และที่อาบน้ำเปลี่ยนเสื้อผ้าหรือไม่?</h3>
+                            <span class="faq-icon text-primary font-bold text-base">▼</span>
+                        </div>
+                        <div class="faq-content text-muted text-xs leading-relaxed border-t border-[#2C2C2C] mt-4 space-y-2">
+                            <p>ทางโฮซานนา ล่องแก่งพังงา มีสถานที่จุดบริการหลัก (Base Camp) คอยต้อนรับนักท่องเที่ยวอย่างครบวงจร:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>🚗 ลานจอดรถกว้างขวาง รองรับรถทัวร์ รถตู้ และรถส่วนบุคคลได้มากกว่า 30 คัน</li>
+                                <li>🔐 ตู้ล็อกเกอร์ฝากของมีกุญแจคล้องส่วนตัว ฟรีค่าบริการ (เพื่อฝากกระเป๋า โทรศัพท์มือถือ ชุดสำรอง)</li>
+                                <li>🚿 ห้องอาบน้ำเปลี่ยนเสื้อผ้าแยกชาย-หญิงสะอาดสะอ้าน มากกว่า 15 ห้อง พร้อมสบู่บริการฟรี</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<!-- Guarantee/Safety banner -->
+<section class="bg-surface py-16 border-t border-[#2C2C2C]">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <h3 class="font-extrabold text-2xl text-secondary mb-3">จองตรงกับเรา มั่นใจได้ 100%</h3>
+        <p class="text-muted text-sm max-w-xl mx-auto mb-6">เราใช้ระบบจองระดับโลก FareHarbor ที่เข้ารหัสความปลอดภัย ป้องกันข้อมูลบัตรเครดิต และมีการยืนยันตั๋วเข้าระบบส่งตรงเข้าอีเมลคุณทันที</p>
+        <div class="flex flex-wrap justify-center gap-6 text-xs text-secondary/70 font-semibold">
+            <span>🛡️ นโยบายยกเลิกฟรี 24 ชั่วโมงก่อนเดินทาง</span>
+            <span>📱 โชว์ตั๋วอิเล็กทรอนิกส์ในมือถือได้เลย</span>
+            <span>💳 ไม่มีค่าธรรมเนียมแอบแฝง</span>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="w-9 h-9 bg-primary text-dark rounded-lg flex items-center justify-center font-black">H</div>
+                    <div>
+                        <h4 class="font-bold text-base text-white tracking-wide">HOSANNA RAFTURE</h4>
+                        <p class="text-xs text-primary font-bold">Phang Nga River Adventure Tour</p>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-sm mb-5">โฮซานนา ล่องแก่งพังงา บริการทัวร์ผจญภัย ล่องแก่ง รถ ATV โหนสลิงซิปไลน์ จองระบบออนไลน์ปลอดภัย 100%</p>
+                <div class="inline-flex items-center gap-2 text-xs text-accent font-bold">
+                    <span class="w-2.5 h-2.5 rounded-full bg-accent animate-pulse"></span>
+                    เปิดให้บริการทุกวัน 08:00 – 17:00 น.
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-widest text-primary mb-5">แผนผังเว็บไซต์</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="index.html" class="hover:text-primary transition-colors">หน้าแรก</a></li>
+                    <li><a href="about.html" class="hover:text-primary transition-colors">เกี่ยวกับเรา</a></li>
+                    <li><a href="packages.html" class="hover:text-primary transition-colors">กิจกรรม &amp; แพ็กเกจ</a></li>
+                    <li><a href="contact.html" class="hover:text-primary transition-colors">ติดต่อเรา</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-widest text-primary mb-5">ติดต่อโฮซานนา</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li class="flex items-start gap-2">📍 30/8 ต.นบปริง อ.เมือง จ.พังงา 82000 (พื้นที่กิจกรรม: คลองสองแพรก)</li>
+                    <li>📞 064-398-2997</li>
+                    <li>✉️ booking@hosannarafture.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-[#2C2C2C] pt-6 text-center sm:text-left text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Hosanna Rafture Phang Nga. All rights reserved.</p>
+            <div class="flex gap-2">
+                <span class="bg-white/5 text-gray-300 px-3 py-1 rounded-md border border-white/10">FareHarbor API</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-md border border-primary/25 font-bold">100% Safety Certified</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Simulated FareHarbor LightFrame Modal Mockup (for local testing/presentation) -->
+<div id="fh-modal-sim" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] hidden flex items-center justify-center p-4">
+    <div class="bg-surface rounded-lg overflow-hidden shadow-2xl max-w-lg w-full transform scale-95 transition-transform duration-300 relative border border-[#2C2C2C]">
+        
+        <!-- Header -->
+        <div class="bg-dark text-white p-6 flex justify-between items-center border-b border-[#2C2C2C]">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">🛒</span>
+                <div>
+                    <h3 class="font-extrabold text-base leading-none">FareHarbor Checkout</h3>
+                    <p class="text-[10px] text-gray-400 tracking-wider uppercase mt-1">LightFrame API Mockup</p>
+                </div>
+            </div>
+            <button class="text-white hover:text-primary text-xl font-bold focus:outline-none" onclick="closeFHModalSim()">✕</button>
+        </div>
+
+        <!-- Body -->
+        <div class="p-6 space-y-4">
+            <div class="bg-dark p-4 rounded-md border border-[#2C2C2C] flex items-center gap-3">
+                <div class="text-primary text-xl">⚡</div>
+                <div>
+                    <h4 class="font-bold text-secondary text-sm" id="sim-package-title">ล่องแก่งธรรมชาติ 5 กม.</h4>
+                    <p class="text-xs text-muted">ตัวนำส่งพารามิเตอร์ FareHarbor: <span class="font-mono bg-surface px-1.5 py-0.5 rounded border border-[#2C2C2C] text-secondary" id="sim-item-id">12345</span></p>
+                </div>
+            </div>
+            
+            <form class="space-y-3" onsubmit="submitSimBooking(event)">
+                <div>
+                    <label class="block text-xs font-bold text-secondary mb-1">วันที่เลือกทำกิจกรรม *</label>
+                    <input type="date" required class="w-full bg-dark border border-[#2C2C2C] rounded-lg p-2.5 text-sm text-secondary focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-secondary mb-1">จำนวนผู้ใหญ่ *</label>
+                        <input type="number" min="1" max="50" value="2" required class="w-full bg-dark border border-[#2C2C2C] rounded-lg p-2.5 text-sm text-secondary focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-secondary mb-1">จำนวนเด็ก</label>
+                        <input type="number" min="0" max="50" value="0" class="w-full bg-dark border border-[#2C2C2C] rounded-lg p-2.5 text-sm text-secondary focus:outline-none">
+                    </div>
+                </div>
+                <div class="pt-3 border-t border-[#2C2C2C] flex justify-between items-center text-sm">
+                    <span class="font-bold text-secondary">รวมค่าบริการโดยประมาณ</span>
+                    <span class="text-primary font-black text-xl" id="sim-total-price">฿1,780</span>
+                </div>
+                <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-dark font-extrabold py-3.5 rounded-md shadow-lg shadow-primary/25 transition-all mt-4">
+                    ชำระเงินและรับตั๋วทันที (จองระบบจริง)
+                </button>
+            </form>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    // Toggle mobile navigation
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Product Category Filter Function
+    function filterCategory(category, button) {
+        // Update active tab button style
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active', 'bg-primary', 'text-dark', 'shadow-lg', 'shadow-primary/30');
+            btn.classList.add('bg-surface', 'text-secondary', 'hover:bg-[#2A2A2A]');
+        });
+        button.classList.add('active');
+        button.classList.remove('bg-surface', 'text-secondary', 'hover:bg-[#2A2A2A]');
+
+        // Filter products with a smooth fade effect
+        const cards = document.querySelectorAll('#products-grid > div');
+        cards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            if (category === 'all' || cardCategory === category) {
+                card.style.display = 'flex';
+                // Trigger a slight scale or opacity fade in the browser
+                setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'scale(1)'; }, 10);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.95)';
+                setTimeout(() => { card.style.display = 'none'; }, 200);
+            }
+        });
+    }
+
+    // FareHarbor LightFrame Simulator Trigger
+    function openFHBooking(itemId, event) {
+        // If FareHarbor script is loaded and active, let it handle the LightFrame popup
+        // Otherwise, open our custom mockup modal to demonstrate flow to the client
+        if (window.FH && typeof FH.open === 'function' && !itemId.startsWith('placeholder') && itemId !== 'all') {
+            // Let FareHarbor handle the click
+            return true;
+        }
+
+        // If it's a mockup click, block default navigation and show our custom modal
+        if (event) event.preventDefault();
+        
+        let title = "ล่องแก่งธรรมชาติ 5 กม.";
+        let pricePerAdult = 890;
+        
+        if (itemId === '12346') { title = "ล่องแก่งสายเอ็กซ์ตรีม 7 กม."; pricePerAdult = 1090; }
+        else if (itemId === '12347') { title = "ขับรถ ATV ตะลุยป่าฝน 30 นาที"; pricePerAdult = 790; }
+        else if (itemId === '12348') { title = "ขับรถ ATV ตะลุยธรรมชาติ 1 ชม."; pricePerAdult = 1190; }
+        else if (itemId === '12349') { title = "โหนสลิงซิปไลน์ผจญภัย 5 สถานี"; pricePerAdult = 690; }
+        else if (itemId === '12350') { title = "Combo A: ล่องแก่ง 5 กม. + ATV 30 นาที"; pricePerAdult = 1490; }
+        else if (itemId === '12351') { title = "Combo B: ล่องแก่ง 5 กม. + ซิปไลน์ 5 สถานี"; pricePerAdult = 1290; }
+        else if (itemId === '12352') { title = "Ultimate 3-in-1 Adventure"; pricePerAdult = 2490; }
+        else if (itemId === '12353') { title = "ล่องแก่งความท้าทายขั้นสุด 9-11 กม."; pricePerAdult = 1890; }
+        else if (itemId === '12354') { title = "กิจกรรมอาบน้ำช้างเชิงอนุรักษ์"; pricePerAdult = 890; }
+        else if (itemId === '12355') { title = "Combo C: ล่องแก่ง 5 กม. + อาบน้ำช้าง"; pricePerAdult = 1390; }
+        else if (itemId === 'all') { title = "Hosanna Rafture All Pass"; pricePerAdult = 1490; }
+
+        document.getElementById('sim-package-title').innerText = title;
+        document.getElementById('sim-item-id').innerText = itemId;
+        document.getElementById('sim-total-price').innerText = `฿${pricePerAdult * 2}`; // default for 2 adults
+        
+        const modal = document.getElementById('fh-modal-sim');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        setTimeout(() => {
+            modal.querySelector('div').classList.remove('scale-95');
+            modal.querySelector('div').classList.add('scale-100');
+        }, 50);
+    }
+
+    function closeFHModalSim() {
+        const modal = document.getElementById('fh-modal-sim');
+        modal.querySelector('div').classList.remove('scale-100');
+        modal.querySelector('div').classList.add('scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }, 150);
+    }
+
+    function submitSimBooking(event) {
+        event.preventDefault();
+        alert("ขอขอบคุณสำหรับการทดสอบระบบจองจำลอง! หากระบบจอง FareHarbor ได้รับการเปิดใช้งาน (Production) ปุ่มนี้จะนำพาคุณไปทำธุรกรรมการจองจริงผ่านหน้าต่าง LightFrame Overlay โดยทันที");
+        closeFHModalSim();
+    }
+
+    // FAQ Accordion Trigger
+    function toggleFAQ(element) {
+        const isActive = element.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        if (!isActive) {
+            element.classList.add('active');
+        }
+    }
+</script>
+</body>
+</html>

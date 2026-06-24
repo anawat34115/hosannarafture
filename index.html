@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="โฮซานนา ล่องแก่งพังงา — สัมผัสประสบการณ์ผจญภัยสุดเร้าใจกับบริการล่องแก่ง รถ ATV และซิปไลน์ท่ามกลางธรรมชาติสมบูรณ์ของพังงา ปลอดภัยมาตรฐานสากล">
+    <title>Hosanna Rafture ล่องแก่งพังงา — ทัวร์ผจญภัย ล่องแก่ง ATV ซิปไลน์</title>
+    
+    <!-- Google Fonts: Prompt for modern Thai & English look -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="designer.css">
+    <script src="designer.js" defer></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#F2B92A",          // Hosanna Yellow
+                        "primary-dark": "#D69E1C",    // Hover Yellow
+                        secondary: "#FFFFFF",        // White text for headings / UI
+                        "secondary-dark": "#E0E0E0",  // Gray text
+                        accent: "#F2B92A",           // Hosanna Yellow
+                        surface: "#1A1A1A",          // Card Surface Black (#1A1A1A)
+                        dark: "#0E0E0D",             // Deep Black Background (#0E0E0D)
+                        muted: "#B3B3B3",            // Secondary Text (#B3B3B3)
+                        success: "#4CAF50",          // Success Green
+                        error: "#EF5350",            // Error Red
+                    },
+                    fontFamily: {
+                        sans: ["Prompt", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { font-family: 'Prompt', sans-serif; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1A1A1A; }
+        ::-webkit-scrollbar-thumb { background: #F2B92A; border-radius: 4px; }
+
+        /* Scroll Progress Line */
+        #scroll-prog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            z-index: 9999;
+            background: linear-gradient(90deg, #F2B92A, #E0E0E0);
+            width: 0%;
+            transition: width 0.1s ease-out;
+        }
+
+        /* Glassmorphism Navigation */
+        .nav-glass {
+            background: rgba(14, 14, 13, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Hero Background with Jungle/Water overlay */
+        .hero-bg {
+            background: 
+                linear-gradient(180deg, rgba(14, 14, 13, 0.4) 0%, rgba(14, 14, 13, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&q=80&w=1600') center/cover no-repeat;
+        }
+
+        /* Slanted Divider Pattern */
+        .slanted-divider {
+            clip-path: polygon(0 0, 100% 4vh, 100% 100%, 0 100%);
+        }
+        .slanted-divider-top {
+            clip-path: polygon(0 4vh, 100% 0, 100% 100%, 0 100%);
+        }
+
+        /* Dynamic Hover Card */
+        .adventure-card {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .adventure-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(243, 220, 26, 0.25);
+        }
+
+        /* Image hover zoom */
+        .zoom-img-wrap { overflow: hidden; position: relative; }
+        .zoom-img-wrap img { transition: transform 0.6s ease; }
+        .zoom-img-wrap:hover img { transform: scale(1.08); }
+
+        /* Animation reveals */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-element.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-dark text-muted antialiased">
+
+<!-- Scroll Progress Bar -->
+<div id="scroll-prog"></div>
+
+<!-- ══════════════════════════════════════
+     NAVIGATION BAR
+     ══════════════════════════════════════ -->
+<nav class="nav-glass sticky top-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary rounded-md flex items-center justify-center text-dark font-black text-xl shadow-md shadow-primary/30">
+                H
+            </div>
+            <div class="leading-tight">
+                <span class="text-secondary font-extrabold text-lg tracking-wider block">HOSANNA RAFTURE</span>
+                <span class="text-primary font-bold text-xs tracking-widest block uppercase">Phang Nga Adventure</span>
+            </div>
+        </a>
+
+        <!-- Desktop Navigation links -->
+        <div class="hidden md:flex items-center gap-8">
+            <a href="index.html" class="text-primary font-bold text-sm border-b-2 border-primary pb-1">หน้าแรก</a>
+            <a href="about.html" class="text-secondary/80 hover:text-primary font-semibold text-sm transition-colors">เกี่ยวกับเรา</a>
+            <a href="packages.html" class="text-secondary/80 hover:text-primary font-semibold text-sm transition-colors">กิจกรรม &amp; แพ็กเกจ</a>
+            <a href="contact.html" class="text-secondary/80 hover:text-primary font-semibold text-sm transition-colors">ติดต่อเรา</a>
+            
+            <!-- FareHarbor booking link placeholder -->
+            <a href="packages.html" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-sm px-6 py-3 rounded-md shadow-lg shadow-primary/25 transition-all transform hover:scale-105">
+                จองเลย / Book Now
+            </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="menu-btn" class="md:hidden text-secondary hover:text-primary p-2 focus:outline-none" aria-label="Toggle Menu">
+            <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface/95 border-t border-white/5 transition-all duration-300">
+        <div class="px-4 pt-2 pb-6 space-y-3 flex flex-col">
+            <a href="index.html" class="text-primary font-bold text-base py-2">หน้าแรก</a>
+            <a href="about.html" class="text-secondary/80 hover:text-primary font-semibold text-base py-2">เกี่ยวกับเรา</a>
+            <a href="packages.html" class="text-secondary/80 hover:text-primary font-semibold text-base py-2">กิจกรรม &amp; แพ็กเกจ</a>
+            <a href="contact.html" class="text-secondary/80 hover:text-primary font-semibold text-base py-2">ติดต่อเรา</a>
+            <a href="packages.html" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-center py-3 rounded-md shadow-md mt-2">
+                จองเลย / Book Now
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HERO SECTION
+     ══════════════════════════════════════ -->
+<header class="hero-bg min-h-[85vh] flex items-center justify-center text-center relative overflow-hidden">
+    <!-- Floating badges decoration -->
+    <div class="absolute top-12 left-10 w-24 h-24 rounded-full border border-white/10 hidden lg:block pointer-events-none animate-pulse"></div>
+    <div class="absolute bottom-20 right-16 w-40 h-40 rounded-full border border-white/5 hidden lg:block pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-white relative z-10">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 bg-primary/10 backdrop-blur-md border border-primary/30 rounded-md px-5 py-2 mb-6">
+            <span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+            <span class="text-white text-xs sm:text-sm font-semibold tracking-wider">ล่องแก่งพังงาอันดับหนึ่ง · Eco-Adventure Tour Operator</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight mb-6">
+            ความสุขเหนือระดับ<br>
+            <span class="text-primary">ยืนหนึ่งเรื่องความปลอดภัย</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+            Hosanna Rafture: <span class="text-primary font-semibold">Your Ultimate Happiness, Our Professional Safety.</span><br>
+            ผู้ให้บริการกิจกรรมท่องเที่ยวเชิงผจญภัยและการล่องแก่งชั้นนำ คลองสองแพรก ต.นบปริง อ.เมือง จ.พังงา
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <a href="packages.html" class="w-full sm:w-auto bg-primary hover:bg-primary-dark text-dark font-black px-8 py-4 rounded-md shadow-xl shadow-primary/30 transition-all transform hover:scale-105 text-lg">
+                ⚡ จองแพ็กเกจทัวร์ / Book Now
+            </a>
+            <a href="#about-brief" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold px-8 py-4 rounded-md transition-all text-lg backdrop-blur-sm">
+                รู้จักเราเพิ่มเติม
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════
+     ABOUT BRIEF SECTION
+     ══════════════════════════════════════ -->
+<section id="about-brief" class="py-24 bg-dark reveal-element">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <!-- Left Side: Text and Badges -->
+            <div class="lg:col-span-7 space-y-6">
+                <span class="text-primary font-bold text-sm tracking-widest uppercase block">ABOUT HOSANNA RAFTURE</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary leading-tight">
+                    ทำไมต้องเลือกผจญภัยกับเรา?<br>ยืนหนึ่งเรื่องความปลอดภัยและประสบการณ์กว่า 10 ปี
+                </h2>
+                <p class="text-muted text-base sm:text-lg leading-relaxed">
+                    <strong>HOSANNA RAFTURE (โฮซันนา ราฟเจอร์)</strong> เป็นผู้ให้บริการกิจกรรมท่องเที่ยวเชิงผจญภัย (Eco-Adventure) ชั้นนำในตำบลนบปริง อำเภอเมืองพังงา จังหวัดพังงา ซึ่งเป็นหนึ่งในจุดหมายปลายทางที่ดีที่สุดในภาคใต้สำหรับการล่องแก่งและการทำกิจกรรมกลางแจ้ง โดยเรามีพื้นที่จัดกิจกรรมหลักอยู่ที่คลองสองแพรก มุ่งมั่นส่งมอบความตื่นเต้นที่ใกล้ชิดธรรมชาติภายใต้การดูแลของทีมงานมืออาชีพที่มีประสบการณ์ยาวนานกว่า 10 ปี
+                </p>
+
+                <!-- Value Proposition Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                            🛡️
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-secondary text-base">ปลอดภัย 100%</h4>
+                            <p class="text-muted text-sm mt-1">อุปกรณ์ทั้งหมดผ่านการตรวจเช็กมาตรฐานความปลอดภัยสากลทุกทริป</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                            👨‍✈️
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-secondary text-base">ไกด์มืออาชีพคอยดูแล</h4>
+                            <p class="text-muted text-sm mt-1">ทีมงานกู้ชีพและไกด์นำล่องแก่งผู้เชี่ยวชาญ ผ่านการอบรมการปฐมพยาบาล</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                            📍
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-secondary text-base">ทำเลดี เดินทางสะดวก</h4>
+                            <p class="text-muted text-sm mt-1">ตั้งอยู่ใจกลางแหล่งท่องเที่ยวธรรมชาติ เดินทางสะดวกจากภูเก็ตและกระบี่</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                            🍽️
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-secondary text-base">บริการครบครัน</h4>
+                            <p class="text-muted text-sm mt-1">ฟรีประกันอุบัติเหตุทัวร์ อาหารกลางวันสไตล์ไทย และห้องอาบน้ำบริการ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Graphic / Image Composition (Adventure Style) -->
+            <div class="lg:col-span-5 relative h-[450px] w-full flex items-center justify-center">
+                <!-- Decorative background patterns -->
+                <div class="absolute w-72 h-72 rounded-lg bg-primary/5 rotate-12 -z-10"></div>
+                <div class="absolute w-64 h-64 rounded-lg bg-primary/5 -rotate-6 -z-10"></div>
+                
+                <!-- Main Overlay Image Card -->
+                <div class="absolute w-72 h-[340px] rounded-lg overflow-hidden shadow-2xl border-4 border-surface transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1528181304800-2f5353a98ef3?auto=format&fit=crop&q=80&w=600" alt="พังงาธรรมชาติ" class="w-full h-full object-cover">
+                    <!-- Text badge on image -->
+                    <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/85 via-black/40 to-transparent text-white">
+                        <p class="text-xs text-primary font-bold uppercase tracking-widest">Phang Nga Province</p>
+                        <p class="text-sm font-semibold">สัมผัสธรรมชาติป่าฝนที่สมบูรณ์ที่สุด</p>
+                    </div>
+                </div>
+
+                <!-- Secondary Small Image Card overlapping -->
+                <div class="absolute bottom-6 -right-2 w-48 h-48 rounded-lg overflow-hidden shadow-xl border-4 border-surface hidden sm:block transform rotate-6 hover:rotate-0 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1551698618-1ffdfe079822?auto=format&fit=crop&q=80&w=400" alt="ขี่ ATV" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Safety Star Badge floating -->
+                <div class="absolute top-6 left-2 bg-primary text-dark font-extrabold px-5 py-3 rounded-md shadow-lg transform -skew-x-6 z-20">
+                    <div class="text-center">
+                        <span class="text-2xl block leading-none">⭐⭐⭐⭐⭐</span>
+                        <span class="text-[10px] tracking-wider uppercase block mt-1">Klook &amp; GetYourGuide Rated</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     USP SECTION (Why Choose Us)
+     ══════════════════════════════════════ -->
+<section id="usps-section" class="py-20 bg-surface border-y border-[#2C2C2C] reveal-element">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-primary font-bold text-sm tracking-widest uppercase block mb-3">OUR STANDARDS</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary">มาตรฐานระดับสากลที่เรามอบให้คุณ</h2>
+            <p class="text-muted mt-4 text-base">มั่นใจสูงสุดกับสิ่งที่ดีที่สุดในจังหวัดพังงาที่เราจัดเตรียมไว้สำหรับทริปครอบครัวและทริปผจญภัย</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 usps-grid">
+            <!-- USP 1 -->
+            <div class="bg-dark p-8 rounded-lg border border-[#2C2C2C] shadow-sm flex flex-col justify-between items-start">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary text-2xl mb-6">🛶</div>
+                <div>
+                    <h3 class="font-bold text-lg text-secondary mb-3">อุปกรณ์ความปลอดภัยครบชุด</h3>
+                    <p class="text-muted text-sm leading-relaxed">เสื้อชูชีพแรงลอยตัวสูงพิเศษและหมวกนิรภัยมาตรฐานยุโรป (CE Certified) ผ่านการเช็คระบบทุกสัปดาห์</p>
+                </div>
+            </div>
+            <!-- USP 2 -->
+            <div class="bg-dark p-8 rounded-lg border border-[#2C2C2C] shadow-sm flex flex-col justify-between items-start">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary text-2xl mb-6">👮</div>
+                <div>
+                    <h3 class="font-bold text-lg text-secondary mb-3">กัปตันผู้เชี่ยวชาญพิเศษ</h3>
+                    <p class="text-muted text-sm leading-relaxed">ไกด์คุมเรือยางผ่านการฝึกอบรมการช่วยชีวิตทางน้ำระดับสูง (Swiftwater Rescue) และ CPR ทุกปี</p>
+                </div>
+            </div>
+            <!-- USP 3 -->
+            <div class="bg-dark p-8 rounded-lg border border-[#2C2C2C] shadow-sm flex flex-col justify-between items-start">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary text-2xl mb-6">💰</div>
+                <div>
+                    <h3 class="font-bold text-lg text-secondary mb-3">รับประกันราคาดีที่สุด</h3>
+                    <p class="text-muted text-sm leading-relaxed">จองตรงกับผู้ประกอบการท้องถิ่นสองแพรกโดยไม่ผ่านคนกลาง ได้ราคาคุ้มค่าและคุณภาพงานบริการระดับดีที่สุด</p>
+                </div>
+            </div>
+            <!-- USP 4 -->
+            <div class="bg-dark p-8 rounded-lg border border-[#2C2C2C] shadow-sm flex flex-col justify-between items-start">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary text-2xl mb-6">💳</div>
+                <div>
+                    <h3 class="font-bold text-lg text-secondary mb-3">ระบบชำระเงิน FareHarbor</h3>
+                    <p class="text-muted text-sm leading-relaxed">ชำระเงินออนไลน์อย่างปลอดภัยผ่านระบบจองทัวร์ระดับโลก พร้อมรับตั๋วและแผนที่เช็คอินทางอีเมลทันที</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     HIGHLIGHT ACTIVITIES SECTION (Packages)
+     ══════════════════════════════════════ -->
+<section class="py-24 bg-surface slanted-divider-top reveal-element">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-primary font-bold text-sm tracking-widest uppercase block mb-3">BEST VALUE PACKAGES</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary">
+                แพ็กเกจยอดนิยมและกิจกรรมแนะนำ
+            </h2>
+            <p class="text-muted mt-4 text-base sm:text-lg">
+                เราได้รวบรวมกิจกรรมยอดฮิตในพังงามาจัดเป็นแพ็กเกจสุดคุ้ม ให้คุณได้ผจญภัยแบบจุใจในวันเดียว
+            </p>
+        </div>
+
+        <!-- 3 Activity Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 activities-grid">
+            
+            <!-- Card 1: Rafting Ultimate -->
+            <div class="adventure-card bg-surface rounded-lg overflow-hidden border border-[#2C2C2C] shadow-sm flex flex-col h-full">
+                <div class="zoom-img-wrap h-56">
+                    <img src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&q=80&w=600" alt="ล่องแก่ง" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-md uppercase tracking-wider">
+                        Rafting 5 KM
+                    </div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-xl text-secondary mb-2">ล่องแก่งแพ็กเกจยอดนิยม (5 กม.)</h3>
+                        <p class="text-muted text-sm line-clamp-3 mb-4">
+                            ผจญภัยล่องแก่งระยะทาง 5 กิโลเมตร ท้าทายความแรงของกระแสน้ำระดับ 2-4 ควควบคุมดูแลโดยนายท้ายมืออาชีพอย่างใกล้ชิด
+                        </p>
+                        <!-- Inclusions list -->
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-center gap-2 text-xs text-secondary/80">
+                                <span>⏱️</span> <span>ระยะเวลากิจกรรม: ~2 ชั่วโมง</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-secondary/80">
+                                <span>🥪</span> <span>รวมอาหารกลางวัน เครื่องดื่ม ผลไม้</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <!-- Price and CTAs -->
+                        <div class="flex items-baseline justify-between border-t border-[#2C2C2C] pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาเริ่มต้น</span>
+                            <div class="text-right">
+                                <span class="text-gray-400 line-through text-xs">฿1,200</span>
+                                <span class="text-primary font-extrabold text-2xl ml-1">฿890</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="packages.html" class="border border-secondary/20 hover:border-primary text-secondary font-bold text-xs text-center py-2.5 rounded-md transition-colors">
+                                ดูรายละเอียด
+                            </a>
+                            <a href="packages.html?book=rafting5" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">
+                                จองตอนนี้
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Adventure Combo A -->
+            <div class="adventure-card bg-surface rounded-lg overflow-hidden border border-[#2C2C2C] shadow-sm flex flex-col h-full ring-2 ring-primary ring-offset-2 ring-offset-[#1A1A1A]">
+                <div class="zoom-img-wrap h-56">
+                    <img src="https://images.unsplash.com/photo-1551698618-1ffdfe079822?auto=format&fit=crop&q=80&w=600" alt="ATV" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-dark text-white font-bold text-xs px-3 py-1.5 rounded-md uppercase tracking-wider">
+                        Best Seller Combo
+                    </div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-xl text-secondary mb-2">แพ็กเกจ Combo A: ล่องแก่ง + ATV</h3>
+                        <p class="text-muted text-sm line-clamp-3 mb-4">
+                            คอมโบสุดคุ้มที่ขายดีที่สุด ล่องแก่งระยะทาง 5 กิโลเมตร สะใจต่อด้วยการขับรถ ATV ตะลุยเส้นทางวิบาก ชมธรรมชาติป่าพังงา 30 นาที
+                        </p>
+                        <!-- Inclusions list -->
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-center gap-2 text-xs text-secondary/80">
+                                <span>⏱️</span> <span>ระยะเวลากิจกรรม: ~3.5 ชั่วโมง</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-secondary/80">
+                                <span>🥪</span> <span>อาหารกลางวันเซ็ตใหญ่ + ประกันภัยทัวร์</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <!-- Price and CTAs -->
+                        <div class="flex items-baseline justify-between border-t border-[#2C2C2C] pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาเริ่มต้น</span>
+                            <div class="text-right">
+                                <span class="text-gray-400 line-through text-xs">฿2,200</span>
+                                <span class="text-primary font-extrabold text-2xl ml-1">฿1,490</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="packages.html" class="border border-secondary/20 hover:border-primary text-secondary font-bold text-xs text-center py-2.5 rounded-md transition-colors">
+                                ดูรายละเอียด
+                            </a>
+                            <a href="packages.html?book=comboA" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">
+                                จองตอนนี้
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Elephant Activity & Rafting Combo -->
+            <div class="adventure-card bg-surface rounded-lg overflow-hidden border border-[#2C2C2C] shadow-sm flex flex-col h-full">
+                <div class="zoom-img-wrap h-56">
+                    <img src="https://images.unsplash.com/photo-1581888227599-779811939961?auto=format&fit=crop&q=80&w=600" alt="อาบน้ำช้าง" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-primary text-dark font-bold text-xs px-3 py-1.5 rounded-md uppercase tracking-wider">
+                        Elephant + Rafting
+                    </div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-xl text-secondary mb-2">แพ็กเกจ Combo C: ล่องแก่ง + อาบน้ำช้าง</h3>
+                        <p class="text-muted text-sm line-clamp-3 mb-4">
+                            สัมผัสธรรมชาติอย่างอ่อนโยนด้วยกิจกรรมอาบน้ำช้างเชิงอนุรักษ์ ป้อนอาหาร เล่นน้ำร่วมกับช้างแสนรู้ พร้อมทริปล่องแก่งเรือยาง 5 กิโลเมตร
+                        </p>
+                        <!-- Inclusions list -->
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-center gap-2 text-xs text-secondary/80">
+                                <span>⏱️</span> <span>ระยะเวลากิจกรรม: ~4 ชั่วโมง</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-secondary/80">
+                                <span>🥪</span> <span>อาหารกลางวัน เครื่องดื่ม และสปาช้างเชิงอนุรักษ์</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <!-- Price and CTAs -->
+                        <div class="flex items-baseline justify-between border-t border-[#2C2C2C] pt-4 mb-4">
+                            <span class="text-muted text-xs">ราคาเริ่มต้น</span>
+                            <div class="text-right">
+                                <span class="text-gray-400 line-through text-xs">฿1,900</span>
+                                <span class="text-primary font-black text-2xl ml-1">฿1,390</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="packages.html" class="border border-secondary/20 hover:border-primary text-secondary font-bold text-xs text-center py-2.5 rounded-md transition-colors">
+                                ดูรายละเอียด
+                            </a>
+                            <a href="packages.html?book=comboC" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-xs text-center py-2.5 rounded-md shadow-sm transition-colors">
+                                จองตอนนี้
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom View All Button -->
+        <div class="text-center mt-12">
+            <a href="packages.html" class="inline-flex items-center gap-2 bg-secondary hover:bg-secondary-dark text-dark font-bold px-8 py-3.5 rounded-md shadow-lg transition-all">
+                ดูแพ็กเกจทัศนาจรและกิจกรรมทั้งหมด ➡️
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     HOW IT WORKS SECTION (Booking Steps)
+     ══════════════════════════════════════ -->
+<section id="steps-section" class="py-24 bg-dark reveal-element border-b border-[#2C2C2C]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-primary font-bold text-sm tracking-widest uppercase block mb-3">EASY BOOKING</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary">ขั้นตอนการจองง่ายๆ เพียง 4 ขั้นตอน</h2>
+            <p class="text-muted mt-4 text-base">เราทำระบบให้การจองทริปผจญภัยล่องแก่งสองแพรกเป็นเรื่องง่ายและสะดวกที่สุดสำหรับคุณ</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 steps-grid relative">
+            <!-- Step 1 -->
+            <div class="bg-surface p-8 rounded-lg border border-[#2C2C2C] shadow-sm relative flex flex-col justify-between">
+                <div class="absolute -top-4 -left-4 w-10 h-10 bg-primary text-dark font-black rounded-full flex items-center justify-center shadow-lg text-lg">1</div>
+                <h3 class="font-bold text-lg text-secondary mt-2 mb-3">เลือกแพ็กเกจทัวร์</h3>
+                <p class="text-muted text-xs leading-relaxed">เลือกระยะทางล่องแก่ง 5 หรือ 7 กม. หรือคอมโบกับ ATV ซิปไลน์ หรืออาบน้ำช้างเชิงอนุรักษ์ตามที่ต้องการ</p>
+            </div>
+            <!-- Step 2 -->
+            <div class="bg-surface p-8 rounded-lg border border-[#2C2C2C] shadow-sm relative flex flex-col justify-between">
+                <div class="absolute -top-4 -left-4 w-10 h-10 bg-primary text-dark font-black rounded-full flex items-center justify-center shadow-lg text-lg">2</div>
+                <h3 class="font-bold text-lg text-secondary mt-2 mb-3">ระบุวันและจองออนไลน์</h3>
+                <p class="text-muted text-xs leading-relaxed">กรอกวันเดินทาง จำนวนผู้ใหญ่และเด็กในระบบ FareHarbor ชำระเงินง่ายดายและปลอดภัย</p>
+            </div>
+            <!-- Step 3 -->
+            <div class="bg-surface p-8 rounded-lg border border-[#2C2C2C] shadow-sm relative flex flex-col justify-between">
+                <div class="absolute -top-4 -left-4 w-10 h-10 bg-primary text-dark font-black rounded-full flex items-center justify-center shadow-lg text-lg">3</div>
+                <h3 class="font-bold text-lg text-secondary mt-2 mb-3">รับใบยืนยันทางอีเมล</h3>
+                <p class="text-muted text-xs leading-relaxed">รับตั๋วอิเล็กทรอนิกส์ (Voucher) ทางอีเมลทันที พร้อมลิงก์แผนที่นำทางพิกัดสำนักงานโฮซานนาสองแพรก</p>
+            </div>
+            <!-- Step 4 -->
+            <div class="bg-surface p-8 rounded-lg border border-[#2C2C2C] shadow-sm relative flex flex-col justify-between">
+                <div class="absolute -top-4 -left-4 w-10 h-10 bg-primary text-dark font-black rounded-full flex items-center justify-center shadow-lg text-lg">4</div>
+                <h3 class="font-bold text-lg text-secondary mt-2 mb-3">สนุกผจญภัยไร้กังวล</h3>
+                <p class="text-muted text-xs leading-relaxed">เดินทางมายังสำนักงานในวันนัดหมาย แสดงตั๋วในมือถือ เช็คอิน แล้วเตรียมออกเดินทางไปลุยกันได้เลย!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SAFETY HIGHLIGHT CTA BANNER
+     ══════════════════════════════════════ -->
+<section class="py-16 bg-gradient-to-r from-surface to-dark text-white relative overflow-hidden border-y border-[#2C2C2C]">
+    <!-- Water pattern background decoration -->
+    <div class="absolute right-0 top-0 w-1/3 h-full bg-primary/5 -skew-x-12 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
+        <div class="flex items-center gap-6">
+            <div class="w-16 h-16 bg-primary rounded-md flex items-center justify-center text-dark text-3xl shadow-lg flex-shrink-0 animate-bounce">
+                🦺
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold">ความปลอดภัยของคุณคือภารกิจสูงสุดของเรา</h3>
+                <p class="text-gray-300 text-sm mt-1 max-w-xl">
+                    อุปกรณ์เสื้อชูชีพและหมวกนิรภัยมาตรฐานระดับยุโรป (CE Certified) 
+                    พร้อมการฝึกอบรมทักษะกู้ภัยทางน้ำขั้นสูงให้กับทีมไกด์ทุกคนในทุกปี
+                </p>
+            </div>
+        </div>
+        <a href="safety.html" class="bg-primary hover:bg-primary-dark text-dark font-extrabold px-8 py-4 rounded-md shadow-lg shadow-primary/20 transition-all flex-shrink-0">
+            อ่านมาตรการและ FAQ 📖
+        </a>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SEO DESTINATION GUIDE SECTION
+     ══════════════════════════════════════ -->
+<section id="destination-guide" class="py-24 bg-surface border-b border-[#2C2C2C] reveal-element">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <span class="text-primary font-bold text-sm tracking-widest uppercase block mb-3 text-center">TRAVEL GUIDE</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary text-center mb-10">คู่มือการท่องเที่ยวและล่องแก่งคลองสองแพรก พังงา</h2>
+        
+        <div class="space-y-8 text-secondary/95 text-sm sm:text-base leading-relaxed">
+            <div class="border-l-4 border-primary pl-6">
+                <h3 class="font-extrabold text-xl text-white mb-3">ล่องแก่งพังงา คลองสองแพรก คืออะไร? ทำไมได้รับความนิยมสูงสุด?</h3>
+                <p class="text-muted">
+                    <strong>คลองสองแพรก</strong> เป็นแม่น้ำที่ไหลผ่านหุบเขาและป่าฝนที่อุดมสมบูรณ์ในจังหวัดพังงา กระแสน้ำที่นี่ถูกควบคุมโดยฝายเก็บน้ำธรรมชาติของเขตรักษาพันธุ์สัตว์ป่าโตนวรรต ทำให้มีน้ำไหลแรงในระดับแก่งระดับ 2 ถึง 4 ที่เหมาะสมต่อการทำกิจกรรมล่องแก่งเรือยางตลอดทั้งปี นักท่องเที่ยวจะได้สัมผัสความท้าทายและความตื่นเต้นของการปะทะเกลียวคลื่นท่ามกลางวิวน้ำตกและป่าธรรมชาติ
+                </p>
+            </div>
+            
+            <div class="border-l-4 border-primary pl-6">
+                <h3 class="font-extrabold text-xl text-white mb-3">ความปลอดภัยและการเตรียมตัวสำหรับนักท่องเที่ยว</h3>
+                <p class="text-muted">
+                    กิจกรรมล่องแก่งพังงาเป็นกิจกรรมผจญภัยที่สนุกสนานแต่จำเป็นต้องมีมาตรการความปลอดภัยอย่างเข้มงวด ที่ <strong>โฮซานนา ราฟเจอร์</strong> เรามีเสื้อชูชีพและหมวกนิรภัยมาตรฐานระดับสูงเตรียมไว้ให้ผู้ร่วมทริปทุกคน และในเรือยางทุกลำจะมีนายท้าย (กัปตันเรือยาง) 2 คนคอยควบคุมหัวเรือและท้ายเรือเพื่อดูแลคุณตลอดทาง แนะนำให้สวมใส่กางเกงกีฬาแห้งไวและรองเท้ารัดส้นสำหรับการล่องแก่ง
+                </p>
+            </div>
+
+            <div class="border-l-4 border-primary pl-6">
+                <h3 class="font-extrabold text-xl text-white mb-3">ช่วงเวลาที่เหมาะสมและระยะทางในการเดินทาง</h3>
+                <p class="text-muted">
+                    คุณสามารถเดินทางมาท่องเที่ยวล่องแก่งพังงาและขี่รถ ATV ที่สองแพรกได้ในทุกฤดูกาล ช่วงฤดูฝน (พฤษภาคม - พฤศจิกายน) น้ำจะมีความเชี่ยวและท้าทายสะใจสายเอ็กซ์ตรีม ส่วนช่วงฤดูร้อน (ธันวาคม - เมษายน) น้ำจะใสสะอาด เหมาะกับทริปครอบครัวและเด็กๆ พื้นที่กิจกรรมอยู่ห่างจากเกาะภูเก็ตประมาณ 1 ชั่วโมงครึ่ง และห่างจากพื้นที่เขาหลักประมาณ 45 นาทีเท่านั้น มีเส้นทางสะดวกสบายสำหรับจีพีเอสนำทางขับรถมาเอง
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SOCIAL PROOF SECTION (Reviews)
+     ══════════════════════════════════════ -->
+<section class="py-24 bg-dark reveal-element">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-primary font-bold text-sm tracking-widest uppercase block mb-3">CUSTOMER REVIEWS</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary">
+                สิ่งที่ผู้ใช้บริการพูดถึงเรา
+            </h2>
+            <p class="text-muted mt-4 text-base sm:text-lg">
+                ความประทับใจจริงจากกลุ่มนักท่องเที่ยวทั้งไทยและต่างชาติที่เลือกจองกิจกรรมกับ โฮซานนา ล่องแก่งพังงา
+            </p>
+        </div>
+
+        <!-- Reviews Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 social-proof-grid">
+            
+            <!-- Review 1 -->
+            <div class="bg-surface p-8 rounded-lg border border-[#2C2C2C] shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-1 text-accent mb-4">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                    <p class="text-secondary/90 italic text-sm leading-relaxed mb-6">
+                        "สนุกมากค่ะ ล่องแก่ง 5 กม. กำลังดี น้ำไหลแรงสะใจมาก ไกด์ท้ายเรือตลกและเป็นกันเอง ดูแลความปลอดภัยดีมาก ช่วงบ่ายขี่ ATV ตะลุยป่าเขียวขจี อากาศดีสุดๆ แนะนำคอมโบเอเลยคุ้มค่ามากๆ ค่ะ"
+                    </p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center font-bold text-primary">
+                        K
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-secondary text-sm">คุณเกวลิน ส.</h4>
+                        <p class="text-gray-400 text-xs">กรุงเทพมหานคร · Klook Review</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="bg-surface p-8 rounded-lg border border-[#2C2C2C] shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-1 text-accent mb-4">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                    <p class="text-secondary/90 italic text-sm leading-relaxed mb-6">
+                        "Great experience! The rafting guide was very skilled and knew how to handle the boat in rough water. The zipline had amazing view over Phang Nga forest. The food included was delicious. Will book again."
+                    </p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center font-bold text-primary">
+                        J
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-secondary text-sm">John D.</h4>
+                        <p class="text-gray-400 text-xs">United Kingdom · GetYourGuide Review</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="bg-surface p-8 rounded-lg border border-[#2C2C2C] shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-1 text-accent mb-4">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                    <p class="text-secondary/90 italic text-sm leading-relaxed mb-6">
+                        "จัดทริปบริษัท 35 คนมาที่นี่ ทีมงานจัดการระบบดีมาก บริการรับส่งรถตู้ตรงเวลา ดูแลความปลอดภัยยอดเยี่ยม อาหารกลางวันอร่อยและเพียงพอสำหรับทุกคน แนะนำสำหรับกลุ่มบริษัทหรืองานสัมมนาครับ"
+                    </p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center font-bold text-primary">
+                        P
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-secondary text-sm">คุณปรีชา ว.</h4>
+                        <p class="text-gray-400 text-xs">ภูเก็ต · Group Outing Client</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════ -->
+<footer class="bg-dark text-white pt-16 pb-8 border-t border-[#2C2C2C]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            
+            <!-- Col 1: Logo & Info -->
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="w-9 h-9 bg-primary text-dark rounded-md flex items-center justify-center font-black">H</div>
+                    <div>
+                        <h4 class="font-bold text-base text-white tracking-wide">HOSANNA RAFTURE</h4>
+                        <p class="text-xs text-primary font-bold">Phang Nga River Adventure Tour</p>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-sm mb-5">
+                    โฮซานนา ล่องแก่งพังงา บริการทัวร์ผจญภัย ล่องแก่ง รถ ATV โหนสลิงซิปไลน์ พร้อมการจองผ่านระบบ FareHarbor สะดวกรวดเร็ว ปลอดภัยด้วยประกันภัยการเดินทาง
+                </p>
+                <div class="inline-flex items-center gap-2 text-xs text-accent font-bold">
+                    <span class="w-2.5 h-2.5 rounded-full bg-accent animate-pulse"></span>
+                    เปิดให้บริการทุกวัน 08:00 – 17:00 น.
+                </div>
+            </div>
+
+            <!-- Col 2: Navigation Links -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-widest text-primary mb-5">แผนผังเว็บไซต์</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="index.html" class="hover:text-primary transition-colors">หน้าแรก</a></li>
+                    <li><a href="about.html" class="hover:text-primary transition-colors">เกี่ยวกับเรา</a></li>
+                    <li><a href="packages.html" class="hover:text-primary transition-colors">กิจกรรม &amp; แพ็กเกจ</a></li>
+                    <li><a href="contact.html" class="hover:text-primary transition-colors">ติดต่อเรา</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Contact Info -->
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-widest text-primary mb-5">ติดต่อโฮซานนา</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li class="flex items-start gap-2">
+                        <span class="mt-0.5">📍</span>
+                        <span>30/8 ต.นบปริง อ.เมือง จ.พังงา 82000 (พื้นที่กิจกรรม: คลองสองแพรก)</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span>📞</span>
+                        <span>064-398-2997 (ฝ่ายจอง)</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span>✉️</span>
+                        <span>booking@hosannarafture.com</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <p>&copy; 2026 Hosanna Rafture Phang Nga. All rights reserved.</p>
+            <div class="flex gap-2">
+                <span class="bg-white/5 text-gray-300 px-3 py-1 rounded-md border border-white/10">FareHarbor Integrated</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-md border border-primary/25 font-bold">100% Safety Certified</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile Drawer Navigation toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Scroll progress handler
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        document.getElementById('scroll-prog').style.width = scrollPercent + '%';
+    });
+
+    // Intersection Observer for scroll animations
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    document.querySelectorAll('.reveal-element').forEach(el => {
+        revealObserver.observe(el);
+    });
+</script>
+</body>
+</html>

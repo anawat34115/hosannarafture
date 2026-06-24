@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ติดต่อเรา โฮซานนา ล่องแก่งพังงา — แผนที่สำนักงานใหญ่จุดนัดพบสองแพรก เบอร์โทรศัพท์ ไลน์ อีเมล และแบบฟอร์มขอใบเสนอราคากรุ๊ปทัวร์สัมมนา">
+    <title>ติดต่อเรา — Hosanna Rafture ล่องแก่งพังงา</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="designer.css">
+    <script src="designer.js" defer></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#F2B92A",          // Hosanna Yellow
+                        "primary-dark": "#D69E1C",    // Hover Yellow
+                        secondary: "#FFFFFF",        // White text for headings / UI
+                        "secondary-dark": "#E0E0E0",  // Gray text
+                        accent: "#F2B92A",           // Hosanna Yellow
+                        surface: "#1A1A1A",          // Card Surface Black (#1A1A1A)
+                        dark: "#0E0E0D",             // Deep Black Background (#0E0E0D)
+                        muted: "#B3B3B3",            // Secondary Text (#B3B3B3)
+                        success: "#4CAF50",          // Success Green
+                        error: "#EF5350",            // Error Red
+                    },
+                    fontFamily: {
+                        sans: ["Prompt", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { font-family: 'Prompt', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1A1A1A; }
+        ::-webkit-scrollbar-thumb { background: #F2B92A; border-radius: 4px; }
+
+        .nav-glass {
+            background: rgba(14, 14, 13, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .map-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Form styling focus */
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #F2B92A;
+            box-shadow: 0 0 0 3px rgba(242, 185, 42, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-dark text-muted antialiased">
+
+<!-- Navigation -->
+<nav class="nav-glass sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary rounded-md flex items-center justify-center text-dark font-black text-xl shadow-md shadow-primary/30">
+                H
+            </div>
+            <div class="leading-tight">
+                <span class="text-secondary font-extrabold text-lg tracking-wider block">HOSANNA RAFTURE</span>
+                <span class="text-primary font-bold text-xs tracking-widest block uppercase">Phang Nga Adventure</span>
+            </div>
+        </a>
+
+        <!-- Links -->
+        <div class="hidden md:flex items-center gap-8">
+            <a href="index.html" class="text-secondary/80 hover:text-primary font-semibold text-sm transition-colors">หน้าแรก</a>
+            <a href="about.html" class="text-secondary/80 hover:text-primary font-semibold text-sm transition-colors">เกี่ยวกับเรา</a>
+            <a href="packages.html" class="text-secondary/80 hover:text-primary font-semibold text-sm transition-colors">กิจกรรม &amp; แพ็กเกจ</a>
+            <a href="contact.html" class="text-primary font-bold text-sm border-b-2 border-primary pb-1">ติดต่อเรา</a>
+            
+            <a href="packages.html" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-sm px-6 py-3 rounded-md shadow-lg shadow-primary/25 transition-all transform hover:scale-105">
+                จองเลย / Book Now
+            </a>
+        </div>
+
+        <!-- Mobile toggle -->
+        <button id="menu-btn" class="md:hidden text-secondary hover:text-primary p-2 focus:outline-none" aria-label="Toggle Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface/95 border-t border-white/5 pb-6 px-4 pt-2">
+        <div class="flex flex-col space-y-3">
+            <a href="index.html" class="text-secondary/80 hover:text-primary font-semibold text-base py-2">หน้าแรก</a>
+            <a href="about.html" class="text-secondary/80 hover:text-primary font-semibold text-base py-2">เกี่ยวกับเรา</a>
+            <a href="packages.html" class="text-secondary/80 hover:text-primary font-semibold text-base py-2">กิจกรรม &amp; แพ็กเกจ</a>
+            <a href="contact.html" class="text-primary font-bold text-base py-2">ติดต่อเรา</a>
+            <a href="packages.html" class="bg-primary hover:bg-primary-dark text-dark font-extrabold text-center py-3 rounded-md shadow-md mt-2">
+                จองเลย / Book Now
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Header Banner -->
+<header class="relative bg-dark py-16 text-center text-white overflow-hidden">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1528181304800-2f5353a98ef3?auto=format&fit=crop&q=80&w=1200')] bg-cover bg-center opacity-25"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4">
+        <h1 class="text-3xl sm:text-5xl font-extrabold mb-3">ติดต่อเรา</h1>
+        <p class="text-gray-300 text-sm sm:text-base font-light">ช่องทางการสอบถามข้อมูล วางแผนกรุ๊ปสัมมนาบริษัท หรือเดินทางมายังจุดนัดพบล่องแก่งสองแพรก</p>
+    </div>
+</header>
+
+<!-- Contact Detail Grid Section -->
+<section class="py-16 bg-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 contact-info-grid">
+            
+            <!-- Box 1: Tel & WhatsApp -->
+            <div class="bg-surface p-8 rounded-lg border border-[#2C2C2C] text-center flex flex-col items-center">
+                <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center text-primary text-xl mb-4">📞</div>
+                <h3 class="font-extrabold text-lg text-secondary mb-2">เบอร์โทรศัพท์ &amp; WhatsApp</h3>
+                <p class="text-muted text-sm mb-4">ฝ่ายประสานงานจองห้องพักและทริป</p>
+                <a href="tel:0643982997" class="text-secondary hover:text-primary font-bold text-lg">064-398-2997</a>
+                <a href="https://wa.me/66643982997" target="_blank" class="mt-4 inline-flex items-center gap-1.5 text-xs bg-success hover:bg-success/80 text-dark font-extrabold px-4 py-2 rounded-md transition-colors">
+                    💬 Chat on WhatsApp
+                </a>
+            </div>
+
+            <!-- Box 2: Line & Social Media -->
+            <div class="bg-surface p-8 rounded-lg border border-[#2C2C2C] text-center flex flex-col items-center">
+                <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center text-primary text-xl mb-4">💬</div>
+                <h3 class="font-extrabold text-lg text-secondary mb-2">LINE &amp; โซเชียลมีเดีย</h3>
+                <p class="text-muted text-sm mb-4">แชตสอบถามข้อมูลการเดินทางหรือจองตั๋ว</p>
+                <div class="flex flex-col gap-2">
+                    <span class="text-secondary font-bold text-sm">Line Official: <a href="#" class="text-secondary hover:text-primary hover:underline">@hosannarafture</a></span>
+                    <div class="flex gap-2 justify-center mt-2">
+                        <a href="https://facebook.com" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3 py-1.5 rounded-md transition-colors">Facebook</a>
+                        <a href="https://instagram.com" target="_blank" class="bg-pink-600 hover:bg-pink-700 text-white text-xs font-bold px-3 py-1.5 rounded-md transition-colors">Instagram</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Box 3: Meeting Location / Office -->
+            <div class="bg-surface p-8 rounded-lg border border-[#2C2C2C] text-center flex flex-col items-center">
+                <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center text-primary text-xl mb-4">📍</div>
+                <h3 class="font-extrabold text-lg text-secondary mb-2">ที่อยู่สำนักงานหลัก</h3>
+                <p class="text-muted text-sm mb-2">Base Camp โฮซานนา นบปริง</p>
+                <p class="text-secondary text-xs leading-relaxed font-medium">30/8 ต.นบปริง อ.เมือง จ.พังงา 82000 (พื้นที่กิจกรรม: คลองสองแพรก)</p>
+                <p class="text-gray-400 text-[10px] mt-1">(เปิดต้อนรับบริการเช็กอินกิจกรรม 08:30–15:30 น.)</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Maps & Form Split Section -->
+<section class="py-16 bg-surface border-t border-[#2C2C2C]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start contact-main-grid">
+            
+            <!-- Left Grid (Google Maps Placeholder) -->
+            <div class="lg:col-span-6 space-y-6">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-secondary mb-2">พิกัดนำทางบนแผนที่ Google Maps</h2>
+                    <p class="text-muted text-sm">สแกนพิกัดจีพีเอสเพื่อขับรถเดินทางมายังแคมป์สองแพรก สำหรับลูกค้าที่เลือกเดินทางมาเอง</p>
+                </div>
+                
+                <!-- Map Container Frame -->
+                <div class="map-container">
+                    <!-- Standard Google Maps placeholder pointing to Song Phraek Phang Nga -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15764.086307185966!2d98.53982875151523!3d8.970116812836262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3051bc27137f8ebf%3A0xe2a3eb2211e4bfbe!2z4LiV4Liy4Lia4Lil4Liy4LiB4LiV4Liy4Lih4Liq4Lit4LiH4Lie4Lij4Liw4LiB!5e0!3m2!1sth!2sth!4v1719120000000!5m2!1sth!2sth" loading="lazy" allowfullscreen></iframe>
+                </div>
+
+                <div class="bg-dark p-6 rounded-lg border border-[#2C2C2C] flex items-center gap-4">
+                    <div class="text-primary text-3xl">🚐</div>
+                    <div>
+                        <h4 class="font-bold text-secondary text-sm">บริการรถตู้วิ่งรับส่งพรีเมียม</h4>
+                        <p class="text-muted text-xs mt-1">หากไม่ต้องการขับรถมาเอง เรามีบริการรถตู้ปรับอากาศรับส่งโรงแรมที่พักครอบคลุมพื้นที่เกาะภูเก็ต เขาหลัก และหาดอ่าวนางกระบี่</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Grid (Inquiry Contact Form) -->
+            <div class="lg:col-span-6 bg-surface p-8 rounded-lg border border-[#2C2C2C]">
+                <h3 class="text-xl font-extrabold text-secondary mb-2">ขอใบเสนอราคา / จัดทริปกรุ๊ปเหมา</h3>
+                <p class="text-muted text-xs mb-6">สำหรับลูกค้าบริษัท สัมมนา งานเลี้ยง หรือกรุ๊ปจองรถบัส ท่องเที่ยวเหมาลำโปรดส่งข้อมูลติดต่อ สตาฟจะทำใบเสนอราคาส่งกลับภายใน 12 ชม.</p>
+                
+                <form id="group-contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                    
+                    <div>
+                        <label class="block text-xs font-bold text-secondary mb-1">ชื่อ-นามสกุล ผู้ติดต่อ *</label>
+                        <input type="text" required class="form-input w-full bg-dark text-white border border-[#2C2C2C] rounded-md p-3 text-sm focus:outline-none" placeholder="เช่น คุณวิชัย รักสนุก">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-secondary mb-1">เบอร์โทรศัพท์ติดต่อ *</label>
+                            <input type="tel" required class="form-input w-full bg-dark text-white border border-[#2C2C2C] rounded-md p-3 text-sm focus:outline-none" placeholder="เช่น 089-xxx-xxxx">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-secondary mb-1">อีเมลแอดเดรส *</label>
+                            <input type="email" required class="form-input w-full bg-dark text-white border border-[#2C2C2C] rounded-md p-3 text-sm focus:outline-none" placeholder="เช่น example@domain.com">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-secondary mb-1">วันที่ต้องการเดินทาง *</label>
+                            <input type="date" required class="form-input w-full bg-dark text-white border border-[#2C2C2C] rounded-md p-3 text-sm focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-secondary mb-1">จำนวนผู้เดินทางโดยประมาณ *</label>
+                            <select required class="form-input w-full bg-dark text-white border border-[#2C2C2C] rounded-md p-3 text-sm focus:outline-none">
+                                <option value="2-9 คน">2 - 9 คน</option>
+                                <option value="10-20 คน">10 - 20 คน</option>
+                                <option value="21-50 คน">21 - 50 คน</option>
+                                <option value="50 คนขึ้นไป">มากกว่า 50 คนขึ้นไป</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-secondary mb-1">รายละเอียด หรือ ความต้องการเพิ่มเติม</label>
+                        <textarea rows="4" class="form-input w-full bg-dark text-white border border-[#2C2C2C] rounded-md p-3 text-sm focus:outline-none" placeholder="เช่น ต้องการรถรับส่งจากเขาหลัก และสั่งเซ็ตเมนูฮาลาลกลางวัน"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-dark font-extrabold py-3.5 rounded-md shadow-lg shadow-primary/25 transition-all transform hover:scale-[1.01]">
+                        ส่งข้อมูลของกรุ๊ปทัวร์
+                    </button>
+                    
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TRAVEL DIRECTIONS & TIMES SECTION (SEO-heavy)
+     ══════════════════════════════════════ -->
+<section id="travel-directions" class="py-20 bg-dark border-t border-[#2C2C2C] reveal-element">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <span class="text-primary font-bold text-sm tracking-widest uppercase block mb-3">GETTING HERE</span>
+            <h2 class="text-3xl font-extrabold text-secondary">ตารางเวลาและเส้นทางการเดินทางมายังสองแพรก</h2>
+            <p class="text-muted mt-3 text-xs sm:text-sm">คู่มือระบุพิกัด ระยะทาง และเวลาเฉลี่ยในการขับรถมาเช็คอินทำกิจกรรมล่องแก่งพังงากับเรา</p>
+        </div>
+
+        <div class="overflow-x-auto rounded-lg border border-[#2C2C2C] bg-surface">
+            <table class="w-full text-left text-sm border-collapse directions-table">
+                <thead>
+                    <tr class="bg-dark border-b border-[#2C2C2C] text-secondary font-bold">
+                        <th class="p-4">จุดเริ่มต้นเดินทาง (From)</th>
+                        <th class="p-4">เวลาเดินทางเฉลี่ย (Time)</th>
+                        <th class="p-4">ระยะทางโดยประมาณ (Distance)</th>
+                        <th class="p-4">เส้นทางแนะนำ (Recommended Route)</th>
+                    </tr>
+                </thead>
+                <tbody class="text-secondary/80 divide-y divide-[#2c2c2c]/50">
+                    <tr class="hover:bg-dark/30 transition-colors">
+                        <td class="p-4 font-semibold text-secondary">เกาะภูเก็ต (สนามบิน / ถ.เทพกระษัตรี)</td>
+                        <td class="p-4">~ 1 ชั่วโมง - 1 ชั่วโมง 15 นาที</td>
+                        <td class="p-4">~ 75 กม.</td>
+                        <td class="p-4">ใช้ถนนหลวงหมายเลข 402 ข้ามสะพานสารสิน เลี้ยวขวาเข้าพังงา (ถนนเพชรเกษม) มุ่งหน้านบปริง</td>
+                    </tr>
+                    <tr class="hover:bg-dark/30 transition-colors">
+                        <td class="p-4 font-semibold text-secondary">พื้นที่ท่องเที่ยวเขาหลัก (Khao Lak)</td>
+                        <td class="p-4">~ 45 - 50 นาที</td>
+                        <td class="p-4">~ 48 กม.</td>
+                        <td class="p-4">ขับลงใต้ตามถนนเพชรเกษม เลี้ยวซ้ายเข้าทล. 4090 ไปทาง ต.สองแพรก นบปริง</td>
+                    </tr>
+                    <tr class="hover:bg-dark/30 transition-colors">
+                        <td class="p-4 font-semibold text-secondary">จังหวัดกระบี่ (อ่าวนาง / เมืองกระบี่)</td>
+                        <td class="p-4">~ 1 ชั่วโมง 10 นาที - 1 ชั่วโมง 20 นาที</td>
+                        <td class="p-4">~ 82 กม.</td>
+                        <td class="p-4">ใช้ถนนหลวงหมายเลข 4 มุ่งหน้าพังงา ผ่านทับปุด เลี้ยวเข้าทางนบปริงสองแพรก</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="mt-8 bg-surface p-6 rounded-lg border border-[#2C2C2C] text-xs text-muted flex gap-3">
+            <span class="text-lg">📌</span>
+            <p class="leading-relaxed">
+                <strong>ข้อแนะนำเพิ่มเติม:</strong> หากขับรถยนต์หรือจักรยานยนต์เดินทางมาเอง แนะนำให้ตั้งเป้าหมายในระบบแผนที่ GPS ไว้ที่ <strong>"Hosanna Rafture"</strong> หรือ <strong>"คลองสองแพรก พังงา"</strong> กรุณาเผื่อเวลาสำหรับเตรียมตัวเช็คอินและรับฟังการอบรมความปลอดภัยล่วงหน้า 15-20 นาทีก่อนเริ่มรอบกิจกรรมทริป
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Toast notification popup (shown on submit) -->
+<div id="toast-success" class="fixed bottom-6 right-6 bg-surface text-secondary px-6 py-4 rounded-md shadow-2xl border border-primary/25 z-[9999] hidden items-center gap-3 transform translate-y-12 transition-transform duration-300">
+    <span class="text-xl">✅</span>
+    <div>
+        <h4 class="font-bold text-sm">ส่งคำขอจองกรุ๊ปสำเร็จแล้ว!</h4>
+        <p class="text-[10px] text-gray-400">เจ้าหน้าที่ฝ่ายจองโฮซานนาจะติดต่อกลับทางอีเมล/เบอร์โทรศัพท์โดยด่วน</p>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="w-9 h-9 bg-primary text-dark rounded-md flex items-center justify-center font-black">H</div>
+                    <div>
+                        <h4 class="font-bold text-base text-white tracking-wide">HOSANNA RAFTURE</h4>
+                        <p class="text-xs text-primary font-bold">Phang Nga River Adventure Tour</p>
+                    </div>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-sm mb-5">โฮซานนา ล่องแก่งพังงา บริการทัวร์ผจญภัย ล่องแก่ง รถ ATV โหนสลิงซิปไลน์ ยินดีต้อนรับนักท่องเที่ยวทุกท่าน</p>
+                <div class="inline-flex items-center gap-2 text-xs text-accent font-bold">
+                    <span class="w-2.5 h-2.5 rounded-full bg-accent animate-pulse"></span>
+                    เปิดให้บริการทุกวัน 08:00 – 17:00 น.
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-widest text-primary mb-5">แผนผังเว็บไซต์</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="index.html" class="hover:text-primary transition-colors">หน้าแรก</a></li>
+                    <li><a href="about.html" class="hover:text-primary transition-colors">เกี่ยวกับเรา</a></li>
+                    <li><a href="packages.html" class="hover:text-primary transition-colors">กิจกรรม &amp; แพ็กเกจ</a></li>
+                    <li><a href="contact.html" class="hover:text-primary transition-colors">ติดต่อเรา</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-xs uppercase tracking-widest text-primary mb-5">ติดต่อโฮซานนา</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li class="flex items-start gap-2">📍 30/8 ต.นบปริง อ.เมือง จ.พังงา 82000 (พื้นที่กิจกรรม: คลองสองแพรก)</li>
+                    <li>📞 064-398-2997</li>
+                    <li>✉️ booking@hosannarafture.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-[#2C2C2C] pt-6 text-center sm:text-left text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Hosanna Rafture Phang Nga. All rights reserved.</p>
+            <div class="flex gap-2">
+                <span class="bg-white/5 text-gray-300 px-3 py-1 rounded-md border border-white/10">FareHarbor API</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-md border border-primary/25 font-bold">100% Safety Certified</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Toggle mobile navigation
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Handle Form Submit
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        
+        // Show success Toast notification
+        const toast = document.getElementById('toast-success');
+        toast.classList.remove('hidden');
+        toast.classList.add('flex');
+        
+        // Fade in animation trigger
+        setTimeout(() => {
+            toast.classList.remove('translate-y-12');
+            toast.classList.add('translate-y-0');
+        }, 10);
+
+        // Clear the form fields
+        document.getElementById('group-contact-form').reset();
+
+        // Dismiss toast after 5 seconds
+        setTimeout(() => {
+            toast.classList.remove('translate-y-0');
+            toast.classList.add('translate-y-12');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 300);
+        }, 5000);
+    }
+</script>
+</body>
+</html>
